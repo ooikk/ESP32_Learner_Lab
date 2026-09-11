@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ESP32 project examples covering GPIO, RFID, I2C displays, SPI TFT, storage, and communication interfaces.">
+  <title>ESP32 Project Examples | ESP32 Learning Lab</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Main navigation">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab<small>Electronics · C · IoT</small></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <div class="nav-links" id="main-nav"><a href="index.html">Home</a><a href="technology.html">ESP32</a><a href="projects.html" aria-current="page">Projects</a><a href="curriculum.html">Lesson plans</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </nav></header>
+  <main id="main">
+    <section class="page-hero"><div class="wrap">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Project examples</span></div>
+      <p class="eyebrow">Build to understand</p><h1>Projects with a reason behind every wire.</h1>
+      <p class="lead">Each project is a starting point for learning: first make it work, then explain it, test the limits, diagnose faults, and add one thoughtful improvement.</p>
+    </div></section>
+    <section class="section-tight"><div class="wrap grid-3">
+      <article class="card project-card"><div class="project-top"><span class="icon">LED</span><span class="tag">Beginner</span></div><h3>LED & RGB control</h3><p>Learn digital output, polarity, current limiting, timing, and simple functions. Extend it with non-blocking patterns.</p><div class="tags"><span class="tag">GPIO</span><span class="tag">C basics</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/01_LED">View materials →</a></article>
+      <article class="card project-card"><div class="project-top"><span class="icon">I/O</span><span class="tag">Beginner</span></div><h3>Inputs & responsive control</h3><p>Read buttons and external signals, handle pull-ups, debounce contacts, and separate input decisions from output actions.</p><div class="tags"><span class="tag">Digital input</span><span class="tag">Debugging</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/02_IO_Pins">View materials →</a></article>
+      <article class="card project-card"><div class="project-top"><span class="icon">RFID</span><span class="tag">Intermediate</span></div><h3>RFID access controller</h3><p>Connect an MFRC522 reader over SPI, read card data, compare identifiers, and design visible access feedback.</p><div class="tags"><span class="tag">SPI</span><span class="tag">Data</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/03_RFID">View materials →</a></article>
+      <article class="card project-card"><div class="project-top"><span class="icon">OLED</span><span class="tag">Intermediate</span></div><h3>Compact OLED instrument</h3><p>Display live measurements on a 0.96-inch OLED, scan the I²C bus, and organise a readable user interface.</p><div class="tags"><span class="tag">I²C</span><span class="tag">Sensors</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/04_I2C_0.96_OLED">View materials →</a></article>
+      <article class="card project-card"><div class="project-top"><span class="icon">LCD</span><span class="tag">Intermediate</span></div><h3>LCD status panel</h3><p>Use an I²C backpack with a character LCD, manage limited screen space, and present system states clearly.</p><div class="tags"><span class="tag">I²C</span><span class="tag">UI</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/04_I2C_LCD1602A">View materials →</a></article>
+      <article class="card project-card"><div class="project-top"><span class="icon">TFT</span><span class="tag">Intermediate</span></div><h3>Colour TFT dashboard</h3><p>Configure an SPI display, test rotation and colour, draw efficiently, and investigate pin or library mismatches.</p><div class="tags"><span class="tag">SPI</span><span class="tag">Graphics</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/05_1.8_TFT_SPI_Display">View materials →</a></article>
+      <article class="card project-card"><div class="project-top"><span class="icon">TOUCH</span><span class="tag">Advanced</span></div><h3>Touch-screen controller</h3><p>Combine display output with touch input, map coordinates, build controls, and manage multiple devices on shared buses.</p><div class="tags"><span class="tag">Touch</span><span class="tag">State</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/06_3.5_TFT_Touch_Display">View materials →</a></article>
+      <article class="card project-card"><div class="project-top"><span class="icon">SD</span><span class="tag">Advanced</span></div><h3>SD data display</h3><p>Read stored content, reason about files and buffers, and coordinate storage with a display on an embedded device.</p><div class="tags"><span class="tag">Storage</span><span class="tag">Memory</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/07_SDCard_Display">View materials →</a></article>
+      <article class="card project-card"><div class="project-top"><span class="icon">BUS</span><span class="tag">Advanced</span></div><h3>Protocol test bench</h3><p>Compare UART, I²C, SPI, and I²S by signal purpose, wiring, throughput, addressing, and common failure modes.</p><div class="tags"><span class="tag">Interfaces</span><span class="tag">Logic</span></div><a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation">Browse protocol guides →</a></article>
+    </div></section>
+    <section class="section"><div class="wrap callout callout-grid"><div><h2>Turn an example into your own system.</h2><p>A strong capstone combines at least one input, one useful decision, one output, and a clear way to diagnose behaviour.</p></div><a class="button light" href="curriculum.html">See the learning path</a></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab</span></a><div class="footer-links"><a href="about.html">About</a><a href="curriculum.html">Lesson plans</a><a href="https://github.com/ooikk/Arduino-Documentation">GitHub resources</a><a href="contact.html">Contact</a></div></div><p class="copyright">© <span data-year></span> Kian Keong Ooi. Educational content for practical embedded-systems learning.</p></div></footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

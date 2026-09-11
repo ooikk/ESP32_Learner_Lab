@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hands-on ESP32, electronics, and C programming learning for teenagers and adults.">
+  <title>ESP32 Learning Lab | Build real embedded systems</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">32</span>
+        <span>ESP32 Learning Lab<small>Electronics · C · IoT</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <div class="nav-links" id="main-nav">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="technology.html">ESP32</a>
+        <a href="projects.html">Projects</a>
+        <a href="curriculum.html">Lesson plans</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Hands-on embedded systems learning</p>
+          <h1>Make hardware <span>respond.</span> Make code <span>matter.</span></h1>
+          <p class="lead">Learn ESP32 hardware, electronics, and C programming by building working devices—not by memorising slides. Start from your first LED and progress to connected, reliable embedded systems.</p>
+          <div class="hero-actions">
+            <a class="button" href="curriculum.html">Choose your learning path</a>
+            <a class="button secondary" href="projects.html">Explore project examples</a>
+          </div>
+        </div>
+        <div class="bench" aria-label="Interactive digital output example">
+          <div class="bench-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span>lesson_01.ino</span></div>
+          <pre class="code"><span class="c-key">const int</span> LED_PIN = <span class="c-num">2</span>;
+
+<span class="c-key">void</span> <span class="c-fn">setup</span>() {
+  pinMode(LED_PIN, OUTPUT);
+}
+
+<span class="c-key">void</span> <span class="c-fn">loop</span>() {
+  digitalWrite(LED_PIN, HIGH);
+}</pre>
+          <div class="signal">
+            <span class="led" data-led aria-hidden="true"></span>
+            <div><strong>GPIO 2</strong><br><span data-led-state>LOW · LED off</span></div>
+            <button type="button" data-led-toggle>Write HIGH</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap metric-grid">
+        <div class="metric"><strong>2</strong><span>learning paths</span></div>
+        <div class="metric"><strong>20</strong><span>structured lessons</span></div>
+        <div class="metric"><strong>8+</strong><span>project directions</span></div>
+        <div class="metric"><strong>1</strong><span>working prototype at a time</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="title-row">
+          <div><p class="eyebrow">What you will learn</p><h2>From electrons to intelligent devices.</h2></div>
+          <p class="lead">Each topic connects a physical effect, a circuit, and the code that controls it.</p>
+        </div>
+        <div class="grid-3">
+          <a class="card card-link" href="technology.html">
+            <span class="card-number">01</span>
+            <h3>Understand the hardware</h3>
+            <p>GPIO, voltage levels, sensors, buses, memory, wireless connectivity, and the ESP32-S3 architecture.</p>
+            <span class="link-arrow">Explore ESP32 →</span>
+          </a>
+          <a class="card card-link" href="curriculum.html">
+            <span class="card-number">02</span>
+            <h3>Write purposeful C code</h3>
+            <p>Variables, decisions, functions, timing, state machines, interrupts, tasks, and robust debugging habits.</p>
+            <span class="link-arrow">See lesson plans →</span>
+          </a>
+          <a class="card card-link" href="projects.html">
+            <span class="card-number">03</span>
+            <h3>Build and diagnose</h3>
+            <p>Wire real modules, read evidence from the serial monitor, isolate faults, and improve a working prototype.</p>
+            <span class="link-arrow">View projects →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="wrap">
+        <div class="title-row">
+          <div><p class="eyebrow">A clear progression</p><h2>Learn in the order engineers think.</h2></div>
+          <p class="muted">The goal is not simply to copy a sketch. You will learn to predict, measure, explain, and improve what your system is doing.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="path"><span class="path-index">01</span><div><h3>Build</h3><p>Translate a simple behaviour into a safe circuit and a small, readable program.</p></div></div>
+            <div class="path"><span class="path-index">02</span><div><h3>Observe</h3><p>Use output, serial data, measurements, and timing to see what the system is actually doing.</p></div></div>
+          </div>
+          <div class="card">
+            <div class="path"><span class="path-index">03</span><div><h3>Debug</h3><p>Form a hypothesis, change one thing, and use evidence to locate hardware or software faults.</p></div></div>
+            <div class="path"><span class="path-index">04</span><div><h3>Extend</h3><p>Add a sensor, display, communication link, or control feature without losing reliability.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="title-row">
+          <div><p class="eyebrow">Project preview</p><h2>Small builds. Real engineering ideas.</h2></div>
+          <a class="button secondary" href="projects.html">See all projects</a>
+        </div>
+        <div class="grid-3">
+          <article class="card project-card">
+            <div class="project-top"><span class="icon">GPIO</span><span class="tag">Beginner</span></div>
+            <h3>Responsive light controller</h3>
+            <p>Control an LED from a button, remove blocking delays, and turn a simple sketch into a state-driven system.</p>
+            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/01_LED">Open source material →</a>
+          </article>
+          <article class="card project-card">
+            <div class="project-top"><span class="icon">RFID</span><span class="tag">Intermediate</span></div>
+            <h3>RFID access prototype</h3>
+            <p>Read an RFID card over SPI, compare identifiers, and drive a clear granted or denied response.</p>
+            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/03_RFID">Open source material →</a>
+          </article>
+          <article class="card project-card">
+            <div class="project-top"><span class="icon">TFT</span><span class="tag">Intermediate</span></div>
+            <h3>SPI display dashboard</h3>
+            <p>Configure a colour display, draw information efficiently, and reason about pins, rotation, and memory.</p>
+            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/05_1.8_TFT_SPI_Display">Open source material →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap callout callout-grid">
+        <div><h2>Ready to build your first system?</h2><p>Choose beginner or advanced learning, then discuss the right format for your age, experience, and goals.</p></div>
+        <a class="button light" href="contact.html">Contact the instructor</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab</span></a>
+        <div class="footer-links"><a href="about.html">About</a><a href="curriculum.html">Lesson plans</a><a href="https://github.com/ooikk/Arduino-Documentation">GitHub resources</a><a href="contact.html">Contact</a></div>
+      </div>
+      <p class="copyright">© <span data-year></span> Kian Keong Ooi. Educational content for practical embedded-systems learning.</p>
+    </div>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

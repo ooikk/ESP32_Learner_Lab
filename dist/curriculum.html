@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Beginner and advanced ESP32 lesson plans for teenagers and adults, covering electronics, C programming, interfaces, wireless systems, and debugging.">
+  <title>ESP32 Lesson Plans | ESP32 Learning Lab</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Main navigation">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab<small>Electronics · C · IoT</small></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <div class="nav-links" id="main-nav"><a href="index.html">Home</a><a href="technology.html">ESP32</a><a href="projects.html">Projects</a><a href="curriculum.html" aria-current="page">Lesson plans</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </nav></header>
+  <main id="main">
+    <section class="page-hero"><div class="wrap">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Lesson plans</span></div>
+      <p class="eyebrow">Two learning paths</p><h1>Start where you are. Build towards independence.</h1>
+      <p class="lead">Both paths are designed for hands-on delivery. The beginner path assumes no embedded-systems experience; the advanced path expects basic C syntax, simple circuit wiring, and confidence using the Arduino IDE.</p>
+    </div></section>
+
+    <section class="section-tight"><div class="wrap">
+      <div class="tabs" role="tablist" aria-label="Curriculum level">
+        <button class="tab" id="beginner-tab" role="tab" type="button" aria-selected="true" aria-controls="beginner">Beginner path</button>
+        <button class="tab" id="advanced-tab" role="tab" type="button" aria-selected="false" aria-controls="advanced" tabindex="-1">Advanced path</button>
+      </div>
+
+      <section class="tab-panel" id="beginner" role="tabpanel" aria-labelledby="beginner-tab">
+        <div class="title-row"><div><p class="eyebrow">Foundation</p><h2>Beginner: first principles to connected prototype.</h2></div><p class="lead">Ten lessons · suggested 20–30 guided hours · suitable for teens and adult beginners.</p></div>
+        <div class="lesson-list">
+          <article class="lesson"><div><h3>Embedded systems & safe lab practice</h3><p>Recognise system inputs, processing, outputs, power paths, polarity, current limits, and safe wiring habits.</p></div><span class="duration">2 hours</span></article>
+          <article class="lesson"><div><h3>Arduino IDE & your first C program</h3><p>Install the ESP32 board support, select the target, compile, upload, and understand setup(), loop(), variables, and functions.</p></div><span class="duration">2–3 hours</span></article>
+          <article class="lesson"><div><h3>Digital outputs: LED & RGB</h3><p>Use pinMode(), digitalWrite(), delays, constants, and simple functions while measuring the output state.</p></div><span class="duration">2 hours</span></article>
+          <article class="lesson"><div><h3>Digital inputs & decisions</h3><p>Read buttons, use internal pull-ups, write if/else logic, debounce contacts, and build a responsive controller.</p></div><span class="duration">2–3 hours</span></article>
+          <article class="lesson"><div><h3>Analogue sensing & PWM output</h3><p>Read an analogue sensor, scale values, and control apparent LED brightness or another safe load with PWM.</p></div><span class="duration">3 hours</span></article>
+          <article class="lesson"><div><h3>Serial monitor & evidence-led debugging</h3><p>Print variables, check assumptions, recognise compiler versus runtime faults, and change one factor at a time.</p></div><span class="duration">2 hours</span></article>
+          <article class="lesson"><div><h3>I²C sensors and displays</h3><p>Understand SDA, SCL, addressing, scanning, library use, and presenting live information on an OLED or LCD.</p></div><span class="duration">3 hours</span></article>
+          <article class="lesson"><div><h3>SPI peripherals & colour TFT</h3><p>Wire clock and data lines, configure chip-select pins, run a display test, and diagnose blank-screen causes.</p></div><span class="duration">3 hours</span></article>
+          <article class="lesson"><div><h3>Wi‑Fi & a local web control</h3><p>Join a network, understand client/server roles, exchange simple data, and keep credentials out of shared code.</p></div><span class="duration">3 hours</span></article>
+          <article class="lesson"><div><h3>Capstone: useful connected device</h3><p>Plan, wire, code, test, demonstrate, and explain a device with an input, decision, output, and diagnostic method.</p></div><span class="duration">4–6 hours</span></article>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="advanced" role="tabpanel" aria-labelledby="advanced-tab" hidden>
+        <div class="title-row"><div><p class="eyebrow">System design</p><h2>Advanced: responsive, connected, maintainable.</h2></div><p class="lead">Ten lessons · suggested 30–40 guided hours · for learners who can already upload and modify a basic sketch.</p></div>
+        <div class="lesson-list">
+          <article class="lesson"><div><h3>Embedded C architecture</h3><p>Use types, pointers, structs, const correctness, modular files, and clear hardware abstractions.</p></div><span class="duration">3 hours</span></article>
+          <article class="lesson"><div><h3>Timing, state machines & responsiveness</h3><p>Replace blocking delays with elapsed-time logic, formalise states, and reason about transition conditions.</p></div><span class="duration">3 hours</span></article>
+          <article class="lesson"><div><h3>Interrupts, timers & shared data</h3><p>Write short interrupt service routines, protect shared state, and choose when polling is the safer design.</p></div><span class="duration">3–4 hours</span></article>
+          <article class="lesson"><div><h3>FreeRTOS tasks & coordination</h3><p>Separate concurrent work, set task priorities thoughtfully, use queues or notifications, and avoid race conditions.</p></div><span class="duration">4 hours</span></article>
+          <article class="lesson"><div><h3>Robust serial buses</h3><p>Compare UART, I²C, SPI, and I²S; validate wiring and timing; recover from missing or invalid peripheral data.</p></div><span class="duration">3–4 hours</span></article>
+          <article class="lesson"><div><h3>Displays, buffers & PSRAM</h3><p>Manage graphics memory, confirm PSRAM configuration, reduce redraw work, and diagnose allocation failures.</p></div><span class="duration">3–4 hours</span></article>
+          <article class="lesson"><div><h3>BLE provisioning & Wi‑Fi lifecycle</h3><p>Model provisioning states, handle events safely, persist configuration, and make recovery behaviour visible.</p></div><span class="duration">4 hours</span></article>
+          <article class="lesson"><div><h3>IoT device model & cloud control</h3><p>Represent nodes, devices, and parameters; design callbacks; compare managed platforms with direct MQTT.</p></div><span class="duration">3–4 hours</span></article>
+          <article class="lesson"><div><h3>Flash partitions, NVS, OTA & security</h3><p>Select a partition layout, plan update and rollback behaviour, store settings, and apply credential hygiene.</p></div><span class="duration">4 hours</span></article>
+          <article class="lesson"><div><h3>Capstone: dependable IoT product prototype</h3><p>Write requirements, partition the design, instrument failures, test recovery, and communicate trade-offs in a review.</p></div><span class="duration">6–8 hours</span></article>
+        </div>
+      </section>
+    </div></section>
+
+    <section class="section"><div class="wrap grid-3">
+      <article class="card"><span class="card-number">A</span><h3>Delivery format</h3><p>Individual, small-group, workshop, or modular course. Online and in-person options are subject to arrangement.</p></article>
+      <article class="card"><span class="card-number">B</span><h3>Equipment</h3><p>ESP32-S3 development board, data-capable USB cable, breadboard, basic components, and selected project modules.</p></article>
+      <article class="card"><span class="card-number">C</span><h3>Assessment</h3><p>Short demonstrations, code explanation, fault-finding exercises, design journal, and a final working prototype.</p></article>
+    </div></section>
+    <section class="section-tight"><div class="wrap callout callout-grid"><div><h2>Need a customised plan?</h2><p>Lessons can be adapted for age, prior experience, class duration, available hardware, and a chosen capstone.</p></div><a class="button light" href="contact.html">Discuss your learning goal</a></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab</span></a><div class="footer-links"><a href="about.html">About</a><a href="curriculum.html">Lesson plans</a><a href="https://github.com/ooikk/Arduino-Documentation">GitHub resources</a><a href="contact.html">Contact</a></div></div><p class="copyright">© <span data-year></span> Kian Keong Ooi. Course durations are suggested and may be adapted.</p></div></footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An accessible introduction to ESP32-S3 hardware, interfaces, memory, wireless connectivity, and programming.">
+  <title>What is ESP32? | ESP32 Learning Lab</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Main navigation">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab<small>Electronics · C · IoT</small></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <div class="nav-links" id="main-nav"><a href="index.html">Home</a><a href="technology.html" aria-current="page">ESP32</a><a href="projects.html">Projects</a><a href="curriculum.html">Lesson plans</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </nav></header>
+  <main id="main">
+    <section class="page-hero"><div class="wrap">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>ESP32 technology</span></div>
+      <p class="eyebrow">Technology, explained</p>
+      <h1>A computer, radio, and control system on one chip.</h1>
+      <p class="lead">ESP32 is a family of microcontrollers designed for connected electronic products. It combines programmable processing, digital and analogue interfaces, Wi‑Fi, and Bluetooth in a compact platform that is accessible to learners yet capable enough for serious prototypes.</p>
+    </div></section>
+
+    <section class="section-tight"><div class="wrap grid-2">
+      <div>
+        <p class="eyebrow">Why learn with it</p><h2>Immediate feedback makes abstract ideas visible.</h2>
+        <p class="lead">Change a line of C code and an LED changes state, a sensor value appears, a motor responds, or data travels wirelessly. That short feedback loop helps learners connect software instructions to electrical behaviour.</p>
+        <ul class="feature-list">
+          <li><strong>One platform, many disciplines:</strong> programming, circuits, control, communication, and IoT.</li>
+          <li><strong>Fast iteration:</strong> compile, upload, observe, and improve.</li>
+          <li><strong>Expandable:</strong> connect displays, sensors, storage, motors, and network services.</li>
+          <li><strong>Industry-relevant thinking:</strong> timing, memory, interfaces, power, reliability, and security.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+        <table class="spec-table">
+          <tbody>
+            <tr><th>Processor</th><td>ESP32-S3 uses two Xtensa LX7 cores, with clock speeds up to 240 MHz.</td></tr>
+            <tr><th>Wireless</th><td>2.4 GHz Wi‑Fi and Bluetooth 5 Low Energy.</td></tr>
+            <tr><th>Memory</th><td>512 KB internal SRAM, with support for external flash and PSRAM on suitable modules.</td></tr>
+            <tr><th>Interfaces</th><td>Programmable GPIO plus SPI, I²C, I²S, UART, PWM, ADC, USB, SD/MMC, and TWAI.</td></tr>
+            <tr><th>Development</th><td>Begin with Arduino IDE and C/C++; progress to ESP-IDF when deeper control is needed.</td></tr>
+            <tr><th>Good for</th><td>Sensor nodes, displays, controls, data logging, wireless devices, and automation prototypes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="title-row"><div><p class="eyebrow">The embedded stack</p><h2>Four layers, one working system.</h2></div><p class="lead">Troubleshooting becomes easier when you know which layer may be failing.</p></div>
+      <div class="grid-4">
+        <article class="card"><span class="card-number">01</span><h3>Electrical</h3><p>Voltage, current, resistance, power, grounding, signal levels, and safe wiring.</p></article>
+        <article class="card"><span class="card-number">02</span><h3>Hardware</h3><p>Microcontroller, memory, GPIO pins, sensors, displays, drivers, and connectors.</p></article>
+        <article class="card"><span class="card-number">03</span><h3>Firmware</h3><p>C/C++ logic, timing, drivers, state machines, tasks, and error handling.</p></article>
+        <article class="card"><span class="card-number">04</span><h3>Connectivity</h3><p>Serial buses, Wi‑Fi, Bluetooth LE, network protocols, provisioning, and cloud links.</p></article>
+      </div>
+    </div></section>
+
+    <section class="section section-dark"><div class="wrap">
+      <div class="title-row"><div><p class="eyebrow">C programming model</p><h2>Setup once. Respond continuously.</h2></div><p class="muted">Arduino’s structure is simple enough for a first program, but it still teaches the essential embedded idea: initialise hardware, then react to events and time.</p></div>
+      <div class="grid-2">
+        <pre class="code"><span class="c-key">void</span> <span class="c-fn">setup</span>() {
+  Serial.begin(<span class="c-num">115200</span>);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+}
+
+<span class="c-key">void</span> <span class="c-fn">loop</span>() {
+  readInputs();
+  updateState();
+  driveOutputs();
+}</pre>
+        <div class="card">
+          <h3>What this teaches</h3>
+          <ul class="feature-list">
+            <li><strong>Initialisation:</strong> configure hardware before using it.</li>
+            <li><strong>Inputs and outputs:</strong> turn physical signals into useful behaviour.</li>
+            <li><strong>State:</strong> remember what happened and decide what comes next.</li>
+            <li><strong>Timing:</strong> design responsive systems without unnecessary blocking.</li>
+            <li><strong>Decomposition:</strong> use small functions so code can be tested and understood.</li>
+          </ul>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="title-row"><div><p class="eyebrow">Trusted references</p><h2>Continue learning from primary sources.</h2></div></div>
+      <div class="grid-3">
+        <a class="card card-link" href="https://docs.espressif.com/projects/arduino-esp32/en/latest/getting_started.html"><h3>Arduino ESP32 guide</h3><p>Official setup, supported chips, libraries, and examples.</p><span class="link-arrow">Read the guide →</span></a>
+        <a class="card card-link" href="https://www.espressif.com/en/products/socs/esp32-s3"><h3>ESP32-S3 overview</h3><p>Official architecture, connectivity, peripherals, and security capabilities.</p><span class="link-arrow">View the overview →</span></a>
+        <a class="card card-link" href="https://github.com/ooikk/Arduino-Documentation"><h3>Course repository</h3><p>Practical notes, interface guides, and Arduino sketches used as learning references.</p><span class="link-arrow">Browse GitHub →</span></a>
+      </div>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab</span></a><div class="footer-links"><a href="about.html">About</a><a href="curriculum.html">Lesson plans</a><a href="https://github.com/ooikk/Arduino-Documentation">GitHub resources</a><a href="contact.html">Contact</a></div></div><p class="copyright">© <span data-year></span> Kian Keong Ooi. ESP32 is a trademark of Espressif Systems.</p></div></footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>
