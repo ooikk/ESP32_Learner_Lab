@@ -27,9 +27,16 @@
           <p class="lead">Store and retrieve files on a microSD card, then present selected data or images on a display without bus conflicts.</p>
           <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
         </div>
-        <figure class="project-figure">
-          <img src="https://github.com/user-attachments/assets/9295b346-a905-4f83-9c77-06c00559bef4" alt="ESP32-S3 wiring diagram for separate TFT and SD-card SPI buses" loading="eager" referrerpolicy="no-referrer">
-          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        <figure class="project-visual" aria-label="SD Data Display signal flow">
+          <p class="visual-label">Project signal flow</p>
+          <div class="signal-flow">
+            <div class="flow-stage"><small>Input</small><strong>Files and data</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage primary"><small>Process</small><strong>ESP32-S3</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage"><small>Output</small><strong>Display or log</strong></div>
+          </div>
+          <figcaption>A functional overview of how information moves through this project.</figcaption>
         </figure>
       </div>
     </section>
@@ -71,51 +78,52 @@
         <circle cx="245" cy="88" r="6" fill="#175fe9" />
         <circle cx="675" cy="88" r="6" fill="#175fe9" />
         <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
-        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3V3 / rated supply → VCC</text>
-        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Verify module</text>
+        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3V3 / rated supply — VCC</text>
+        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Power connection</text>
       </g>
       <g>
         <line x1="245" y1="128" x2="675" y2="128" stroke="#13b8c4" stroke-width="4" />
         <circle cx="245" cy="128" r="6" fill="#13b8c4" />
         <circle cx="675" cy="128" r="6" fill="#13b8c4" />
         <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
-        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND → GND</text>
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND — GND</text>
         <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Common ground</text>
       </g>
       <g>
         <line x1="245" y1="168" x2="675" y2="168" stroke="#ff7a45" stroke-width="4" />
         <circle cx="245" cy="168" r="6" fill="#ff7a45" />
-        <circle cx="675" cy="168" r="6" fill="#ff7a45" />
+        <polygon points="675,168 662,161 662,175" fill="#ff7a45" />
         <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
         <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 4 → SCK</text>
-        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">VSPI clock</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">ESP32 → card clock</text>
       </g>
       <g>
         <line x1="245" y1="208" x2="675" y2="208" stroke="#7a5af8" stroke-width="4" />
         <circle cx="245" cy="208" r="6" fill="#7a5af8" />
-        <circle cx="675" cy="208" r="6" fill="#7a5af8" />
+        <polygon points="675,208 662,201 662,215" fill="#7a5af8" />
         <rect x="318" y="194" width="284" height="28" rx="8" fill="#ffffff" stroke="#7a5af8" />
         <text x="460" y="213" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 6 → MOSI</text>
-        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">ESP32 → card</text>
+        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">ESP32 → card data</text>
       </g>
       <g>
         <line x1="245" y1="248" x2="675" y2="248" stroke="#299c5f" stroke-width="4" />
-        <circle cx="245" cy="248" r="6" fill="#299c5f" />
+        <polygon points="245,248 258,241 258,255" fill="#299c5f" />
         <circle cx="675" cy="248" r="6" fill="#299c5f" />
         <rect x="318" y="234" width="284" height="28" rx="8" fill="#ffffff" stroke="#299c5f" />
-        <text x="460" y="253" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 5 → MISO</text>
-        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">Card → ESP32</text>
+        <text x="460" y="253" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 5 ← MISO</text>
+        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">Card → ESP32 data</text>
       </g>
       <g>
         <line x1="245" y1="288" x2="675" y2="288" stroke="#d8446f" stroke-width="4" />
         <circle cx="245" cy="288" r="6" fill="#d8446f" />
-        <circle cx="675" cy="288" r="6" fill="#d8446f" />
+        <polygon points="675,288 662,281 662,295" fill="#d8446f" />
         <rect x="318" y="274" width="284" height="28" rx="8" fill="#ffffff" stroke="#d8446f" />
         <text x="460" y="293" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 7 → CS</text>
-        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">Card select</text>
+        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">ESP32 → card select</text>
       </g>
       </svg>
     </div>
+    <p class="diagram-legend"><strong>Arrow key:</strong> → sent by ESP32-S3 · ← sent by the external device · ↔ bidirectional data · — power, ground, or physical connection</p>
             <div class="notice"><strong>Before applying power</strong><p>This example places the SD card on a separate SPI peripheral from the TFT. Keep logic at 3.3 V and use an SD module designed for the supply voltage you provide.</p></div>
           </section>
 
@@ -165,10 +173,10 @@ if (!SD.begin(SD_CS, sdBus, 16000000)) {
             <ul class="compact-list"><li>ESP32-S3 development board</li><li>microSD breakout or display with SD slot</li><li>FAT32-formatted microSD card</li><li>Jumper wires</li><li>Optional TFT display</li><li>SD and SPI libraries</li></ul>
           </div>
           <div class="card">
-            <p class="eyebrow">Full reference</p>
-            <h3>Continue with the source material</h3>
-            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
-            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/07_SDCard_Display">Open complete resources →</a>
+            <p class="eyebrow">Private course material</p>
+            <h3>Complete code is provided during the lesson</h3>
+            <p>Students receive the full sketch, library setup notes, and supporting files directly as part of the guided course.</p>
+            <a class="link-arrow" href="../contact.html">Ask about this project →</a>
           </div>
         </aside>
       </div>

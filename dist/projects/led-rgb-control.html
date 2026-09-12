@@ -27,9 +27,16 @@
           <p class="lead">Control the ESP32-S3’s built-in addressable RGB LED while learning how software values become colour and light.</p>
           <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
         </div>
-        <figure class="project-figure">
-          <img src="https://github.com/user-attachments/assets/ec73d7da-acef-4d03-a89f-68f72a6ce86f" alt="ESP32-S3 development board used for the built-in RGB LED exercise" loading="eager" referrerpolicy="no-referrer">
-          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        <figure class="project-visual" aria-label="LED &amp; RGB Control signal flow">
+          <p class="visual-label">Project signal flow</p>
+          <div class="signal-flow">
+            <div class="flow-stage"><small>Input</small><strong>RGB values</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage primary"><small>Process</small><strong>ESP32-S3</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage"><small>Output</small><strong>Colour and status</strong></div>
+          </div>
+          <figcaption>A functional overview of how information moves through this project.</figcaption>
         </figure>
       </div>
     </section>
@@ -69,7 +76,7 @@
       <g>
         <line x1="245" y1="88" x2="675" y2="88" stroke="#175fe9" stroke-width="4" />
         <circle cx="245" cy="88" r="6" fill="#175fe9" />
-        <circle cx="675" cy="88" r="6" fill="#175fe9" />
+        <polygon points="675,88 662,81 662,95" fill="#175fe9" />
         <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
         <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 48 → DIN</text>
         <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Internal data</text>
@@ -79,7 +86,7 @@
         <circle cx="245" cy="128" r="6" fill="#13b8c4" />
         <circle cx="675" cy="128" r="6" fill="#13b8c4" />
         <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
-        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3.3 V rail → VDD</text>
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3.3 V rail — VDD</text>
         <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Internal power</text>
       </g>
       <g>
@@ -87,11 +94,12 @@
         <circle cx="245" cy="168" r="6" fill="#ff7a45" />
         <circle cx="675" cy="168" r="6" fill="#ff7a45" />
         <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
-        <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">Ground → GND</text>
-        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">Internal return</text>
+        <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">Ground — GND</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">Common return</text>
       </g>
       </svg>
     </div>
+    <p class="diagram-legend"><strong>Arrow key:</strong> → sent by ESP32-S3 · ← sent by the external device · ↔ bidirectional data · — power, ground, or physical connection</p>
             <div class="notice"><strong>Before applying power</strong><p>No external wiring is required when your board includes the addressable RGB LED. If it does not, add a separate WS2812B module with a common ground and follow that module’s power requirements.</p></div>
           </section>
 
@@ -139,10 +147,10 @@ void showColour(uint8_t r, uint8_t g, uint8_t b) {
             <ul class="compact-list"><li>ESP32-S3 development board with built-in WS2812B LED</li><li>Data-capable USB cable</li><li>Arduino IDE with ESP32 board support</li><li>Adafruit NeoPixel or compatible library</li></ul>
           </div>
           <div class="card">
-            <p class="eyebrow">Full reference</p>
-            <h3>Continue with the source material</h3>
-            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
-            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/01_LED">Open complete resources →</a>
+            <p class="eyebrow">Private course material</p>
+            <h3>Complete code is provided during the lesson</h3>
+            <p>Students receive the full sketch, library setup notes, and supporting files directly as part of the guided course.</p>
+            <a class="link-arrow" href="../contact.html">Ask about this project →</a>
           </div>
         </aside>
       </div>

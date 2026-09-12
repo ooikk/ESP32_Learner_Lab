@@ -27,9 +27,16 @@
           <p class="lead">Combine an ILI9488 colour display and XPT2046 touch controller to build an interactive embedded interface.</p>
           <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
         </div>
-        <figure class="project-figure">
-          <img src="https://github.com/user-attachments/assets/29e8fc7e-41b9-4c76-9e46-2bd30373cb39" alt="3.5-inch ILI9488 touch-screen module" loading="eager" referrerpolicy="no-referrer">
-          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        <figure class="project-visual" aria-label="Touch-Screen Controller signal flow">
+          <p class="visual-label">Project signal flow</p>
+          <div class="signal-flow">
+            <div class="flow-stage"><small>Input</small><strong>Touch coordinates</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage primary"><small>Process</small><strong>ESP32-S3</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage"><small>Output</small><strong>Interactive screen</strong></div>
+          </div>
+          <figcaption>A functional overview of how information moves through this project.</figcaption>
         </figure>
       </div>
     </section>
@@ -71,83 +78,84 @@
         <circle cx="245" cy="88" r="6" fill="#175fe9" />
         <circle cx="675" cy="88" r="6" fill="#175fe9" />
         <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
-        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">Rated supply → VCC</text>
-        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Check J1 pad</text>
+        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">Rated supply — VCC</text>
+        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Power connection</text>
       </g>
       <g>
         <line x1="245" y1="128" x2="675" y2="128" stroke="#13b8c4" stroke-width="4" />
         <circle cx="245" cy="128" r="6" fill="#13b8c4" />
         <circle cx="675" cy="128" r="6" fill="#13b8c4" />
         <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
-        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND → GND</text>
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND — GND</text>
         <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Common ground</text>
       </g>
       <g>
         <line x1="245" y1="168" x2="675" y2="168" stroke="#ff7a45" stroke-width="4" />
         <circle cx="245" cy="168" r="6" fill="#ff7a45" />
-        <circle cx="675" cy="168" r="6" fill="#ff7a45" />
+        <polygon points="675,168 662,161 662,175" fill="#ff7a45" />
         <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
         <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 12 → SCK + T_CLK</text>
-        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">Shared clock</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">ESP32 → shared clock</text>
       </g>
       <g>
         <line x1="245" y1="208" x2="675" y2="208" stroke="#7a5af8" stroke-width="4" />
         <circle cx="245" cy="208" r="6" fill="#7a5af8" />
-        <circle cx="675" cy="208" r="6" fill="#7a5af8" />
+        <polygon points="675,208 662,201 662,215" fill="#7a5af8" />
         <rect x="318" y="194" width="284" height="28" rx="8" fill="#ffffff" stroke="#7a5af8" />
         <text x="460" y="213" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 11 → MOSI + T_DIN</text>
-        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">Shared output</text>
+        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display/touch data</text>
       </g>
       <g>
         <line x1="245" y1="248" x2="675" y2="248" stroke="#299c5f" stroke-width="4" />
-        <circle cx="245" cy="248" r="6" fill="#299c5f" />
+        <polygon points="245,248 258,241 258,255" fill="#299c5f" />
         <circle cx="675" cy="248" r="6" fill="#299c5f" />
         <rect x="318" y="234" width="284" height="28" rx="8" fill="#ffffff" stroke="#299c5f" />
-        <text x="460" y="253" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 13 → T_DO</text>
-        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">Touch input</text>
+        <text x="460" y="253" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 13 ← T_DO</text>
+        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">Touch controller → ESP32</text>
       </g>
       <g>
         <line x1="245" y1="288" x2="675" y2="288" stroke="#d8446f" stroke-width="4" />
         <circle cx="245" cy="288" r="6" fill="#d8446f" />
-        <circle cx="675" cy="288" r="6" fill="#d8446f" />
+        <polygon points="675,288 662,281 662,295" fill="#d8446f" />
         <rect x="318" y="274" width="284" height="28" rx="8" fill="#ffffff" stroke="#d8446f" />
         <text x="460" y="293" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 9 → TFT_CS</text>
-        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">Display select</text>
+        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display select</text>
       </g>
       <g>
         <line x1="245" y1="328" x2="675" y2="328" stroke="#175fe9" stroke-width="4" />
         <circle cx="245" cy="328" r="6" fill="#175fe9" />
-        <circle cx="675" cy="328" r="6" fill="#175fe9" />
+        <polygon points="675,328 662,321 662,335" fill="#175fe9" />
         <rect x="318" y="314" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
         <text x="460" y="333" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 8 → T_CS</text>
-        <text x="460" y="353" text-anchor="middle" fill="#516078" font-size="11">Touch select</text>
+        <text x="460" y="353" text-anchor="middle" fill="#516078" font-size="11">ESP32 → touch select</text>
       </g>
       <g>
         <line x1="245" y1="368" x2="675" y2="368" stroke="#13b8c4" stroke-width="4" />
         <circle cx="245" cy="368" r="6" fill="#13b8c4" />
-        <circle cx="675" cy="368" r="6" fill="#13b8c4" />
+        <polygon points="675,368 662,361 662,375" fill="#13b8c4" />
         <rect x="318" y="354" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
         <text x="460" y="373" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 10 → RESET</text>
-        <text x="460" y="393" text-anchor="middle" fill="#516078" font-size="11">Display reset</text>
+        <text x="460" y="393" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display reset</text>
       </g>
       <g>
         <line x1="245" y1="408" x2="675" y2="408" stroke="#ff7a45" stroke-width="4" />
         <circle cx="245" cy="408" r="6" fill="#ff7a45" />
-        <circle cx="675" cy="408" r="6" fill="#ff7a45" />
+        <polygon points="675,408 662,401 662,415" fill="#ff7a45" />
         <rect x="318" y="394" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
         <text x="460" y="413" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 14 → DC / RS</text>
-        <text x="460" y="433" text-anchor="middle" fill="#516078" font-size="11">Display command</text>
+        <text x="460" y="433" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display command</text>
       </g>
       <g>
         <line x1="245" y1="448" x2="675" y2="448" stroke="#7a5af8" stroke-width="4" />
         <circle cx="245" cy="448" r="6" fill="#7a5af8" />
         <circle cx="675" cy="448" r="6" fill="#7a5af8" />
         <rect x="318" y="434" width="284" height="28" rx="8" fill="#ffffff" stroke="#7a5af8" />
-        <text x="460" y="453" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">Not connected → TFT_SDO</text>
+        <text x="460" y="453" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">Not connected — TFT_SDO</text>
         <text x="460" y="473" text-anchor="middle" fill="#516078" font-size="11">Avoid bus conflict</text>
       </g>
       </svg>
     </div>
+    <p class="diagram-legend"><strong>Arrow key:</strong> → sent by ESP32-S3 · ← sent by the external device · ↔ bidirectional data · — power, ground, or physical connection</p>
             <div class="notice"><strong>Before applying power</strong><p>Some ILI9488 modules do not release TFT SDO/MISO correctly. Leave the display SDO disconnected when it interferes with touch or SD communication. Power requirements depend on the module’s J1 configuration.</p></div>
           </section>
 
@@ -198,10 +206,10 @@ if (touch.touched()) {
             <ul class="compact-list"><li>ESP32-S3 development board</li><li>ILI9488 SPI TFT with XPT2046 touch</li><li>Stable external supply suited to the module</li><li>Jumper wires</li><li>TFT_eSPI and XPT2046-compatible libraries</li></ul>
           </div>
           <div class="card">
-            <p class="eyebrow">Full reference</p>
-            <h3>Continue with the source material</h3>
-            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
-            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/06_3.5_TFT_Touch_Display">Open complete resources →</a>
+            <p class="eyebrow">Private course material</p>
+            <h3>Complete code is provided during the lesson</h3>
+            <p>Students receive the full sketch, library setup notes, and supporting files directly as part of the guided course.</p>
+            <a class="link-arrow" href="../contact.html">Ask about this project →</a>
           </div>
         </aside>
       </div>

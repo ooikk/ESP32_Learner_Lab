@@ -38,22 +38,22 @@ Each project page includes:
 - partial instructional code
 - expected outcomes
 - troubleshooting and extension ideas
-- link to the complete source material
+- note that complete code and supporting files are provided privately during lessons
 
 Update the public email address in `dist/contact.html`. Course dates and fees are intentionally shown as “By arrangement” until public details are confirmed.
 
-## GitHub Pages
+## Static hosting
 
-The files in `dist/` can be copied to the publishing branch root. Because all internal links are relative, the site works both at:
+The files in `dist/` can be copied to the document root of any static host. Because all internal links are relative, the site works both at:
 
-- a repository URL such as `https://ooikk.github.io/Arduino-Documentation/`
+- a subdirectory-based site URL
 - a future custom domain
 
-For the existing Arduino Documentation repository, publish from the `main` branch root after reviewing the proposed site changes. Keep the included `.nojekyll` file.
+Review the proposed changes before publishing. The included `.nojekyll` file is harmless on general static hosts and can be retained.
 
 ## Custom domain later
 
-Add a file named `CNAME` beside `index.html` containing only the domain name, then configure the same domain in the repository’s GitHub Pages settings. No HTML path changes should be required.
+Add a file named `CNAME` beside `index.html` only if your hosting provider uses that convention, then configure the domain with the provider. No HTML path changes should be required.
 
 ## Local preview
 
@@ -61,7 +61,7 @@ Open `dist/index.html` directly in a browser, or serve the `dist/` folder with a
 
 ## Content sources
 
-- Course examples: https://github.com/ooikk/Arduino-Documentation
+- Course examples and complete code: private teaching materials
 - Official Arduino ESP32 guide: https://docs.espressif.com/projects/arduino-esp32/en/latest/getting_started.html
 - Official ESP32-S3 overview: https://www.espressif.com/en/products/socs/esp32-s3
 

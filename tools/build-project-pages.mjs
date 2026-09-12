@@ -12,9 +12,8 @@ const projects = [
     level: "Beginner",
     title: "LED & RGB Control",
     intro: "Control the ESP32-S3’s built-in addressable RGB LED while learning how software values become colour and light.",
-    image: "https://github.com/user-attachments/assets/ec73d7da-acef-4d03-a89f-68f72a6ce86f",
-    imageAlt: "ESP32-S3 development board used for the built-in RGB LED exercise",
-    source: "https://github.com/ooikk/Arduino-Documentation/tree/main/01_LED",
+    input: "RGB values",
+    output: "Colour and status",
     duration: "60–90 minutes",
     difficulty: "First project",
     parts: ["ESP32-S3 development board with built-in WS2812B LED", "Data-capable USB cable", "Arduino IDE with ESP32 board support", "Adafruit NeoPixel or compatible library"],
@@ -24,9 +23,9 @@ const projects = [
       ["Current and brightness", "Full white drives all three colour channels and uses more current than a dim single colour. Start at modest brightness to reduce heat and glare."]
     ],
     connections: [
-      ["GPIO 48", "DIN", "Internal data"],
-      ["3.3 V rail", "VDD", "Internal power"],
-      ["Ground", "GND", "Internal return"]
+      ["GPIO 48", "DIN", "Internal data", "out"],
+      ["3.3 V rail", "VDD", "Internal power", "connection"],
+      ["Ground", "GND", "Common return", "connection"]
     ],
     wiringNote: "No external wiring is required when your board includes the addressable RGB LED. If it does not, add a separate WS2812B module with a common ground and follow that module’s power requirements.",
     code: `#include <Adafruit_NeoPixel.h>
@@ -52,9 +51,8 @@ void showColour(uint8_t r, uint8_t g, uint8_t b) {
     level: "Beginner",
     title: "Inputs & Responsive Control",
     intro: "Read a push button reliably and use it to control an output without leaving the input pin electrically undefined.",
-    image: "https://github.com/user-attachments/assets/36c7d625-592f-488f-8238-431cbe2307f8",
-    imageAlt: "Push-button wiring example for an ESP32 digital input",
-    source: "https://github.com/ooikk/Arduino-Documentation/tree/main/02_IO_Pins",
+    input: "Push button",
+    output: "LED state",
     duration: "90–120 minutes",
     difficulty: "Foundation",
     parts: ["ESP32-S3 development board", "Momentary push button", "Breadboard and two jumper wires", "Built-in RGB LED or one LED with a suitable series resistor"],
@@ -64,9 +62,9 @@ void showColour(uint8_t r, uint8_t g, uint8_t b) {
       ["Contact bounce", "A mechanical contact may switch several times within a few milliseconds. Debouncing prevents one press from being counted repeatedly."]
     ],
     connections: [
-      ["GPIO 4", "Button terminal 1", "Input"],
-      ["GND", "Button terminal 2", "Return"],
-      ["GPIO 48", "Built-in RGB LED", "Output"]
+      ["GPIO 4", "Button terminal 1", "Button → ESP32", "in"],
+      ["GND", "Button terminal 2", "Common return", "connection"],
+      ["GPIO 48", "Built-in RGB LED", "ESP32 → LED", "out"]
     ],
     wiringNote: "This active-LOW arrangement uses INPUT_PULLUP. Never configure the button pin as OUTPUT: pressing the button could then short a HIGH output directly to ground.",
     code: `constexpr uint8_t BUTTON_PIN = 4;
@@ -93,9 +91,8 @@ void loop() {
     level: "Intermediate",
     title: "RFID Access Controller",
     intro: "Read a MIFARE card with an MFRC522 module, compare its identifier, and provide a clear access decision.",
-    image: "https://github.com/user-attachments/assets/faad8f38-8abe-43f3-98f1-e2c2a0261664",
-    imageAlt: "MFRC522 RFID reader and card hardware",
-    source: "https://github.com/ooikk/Arduino-Documentation/tree/main/03_RFID",
+    input: "Card UID",
+    output: "Access decision",
     duration: "2–3 hours",
     difficulty: "SPI peripheral",
     parts: ["ESP32-S3 development board", "MFRC522 RFID reader", "MIFARE-compatible card or tag", "Jumper wires", "Optional LED or buzzer for access feedback", "Optional 10 µF decoupling capacitor"],
@@ -105,13 +102,13 @@ void loop() {
       ["Identity is not strong security", "A card UID can be copied on some tag types. Treat UID comparison as a learning prototype, not a secure door-control design."]
     ],
     connections: [
-      ["3V3", "3.3V", "Power"],
-      ["GND", "GND", "Common ground"],
-      ["GPIO 12", "SCK", "SPI clock"],
-      ["GPIO 11", "MOSI", "Controller → reader"],
-      ["GPIO 13", "MISO", "Reader → controller"],
-      ["GPIO 10", "SDA / SS", "Chip select"],
-      ["GPIO 5", "RST", "Reader reset"]
+      ["3V3", "3.3V", "Power connection", "connection"],
+      ["GND", "GND", "Common ground", "connection"],
+      ["GPIO 12", "SCK", "ESP32 → reader clock", "out"],
+      ["GPIO 11", "MOSI", "ESP32 → reader data", "out"],
+      ["GPIO 13", "MISO", "Reader → ESP32 data", "in"],
+      ["GPIO 10", "SDA / SS", "ESP32 → reader select", "out"],
+      ["GPIO 5", "RST", "ESP32 → reader reset", "out"]
     ],
     wiringNote: "Power the MFRC522 from 3.3 V, not 5 V. A 10 µF capacitor across 3.3 V and GND near the reader can help if scans are intermittent.",
     code: `#include <SPI.h>
@@ -139,9 +136,8 @@ if (reader.PICC_IsNewCardPresent() &&
     level: "Intermediate",
     title: "Compact OLED Instrument",
     intro: "Present live measurements on a 128 × 64 OLED while learning I²C addressing, display buffers, and readable information design.",
-    image: "https://github.com/user-attachments/assets/070bcd75-011a-4365-b36e-caba64e9435b",
-    imageAlt: "Small 0.96-inch OLED display module",
-    source: "https://github.com/ooikk/Arduino-Documentation/tree/main/04_I2C_0.96_OLED",
+    input: "Sensor value",
+    output: "OLED reading",
     duration: "2–3 hours",
     difficulty: "I²C display",
     parts: ["ESP32-S3 development board", "0.96-inch 128 × 64 SSD1306 I²C OLED", "Four jumper wires", "Optional analogue or digital sensor"],
@@ -151,10 +147,10 @@ if (reader.PICC_IsNewCardPresent() &&
       ["Frame buffer", "Graphics are composed in memory and sent to the display when display.display() is called. The visible screen may not change until that transfer occurs."]
     ],
     connections: [
-      ["3V3", "VCC", "Power"],
-      ["GND", "GND", "Common ground"],
-      ["GPIO 8", "SDA", "I²C data"],
-      ["GPIO 9", "SCL", "I²C clock"]
+      ["3V3", "VCC", "Power connection", "connection"],
+      ["GND", "GND", "Common ground", "connection"],
+      ["GPIO 8", "SDA", "Bidirectional I²C data", "both"],
+      ["GPIO 9", "SCL", "ESP32 → display clock", "out"]
     ],
     wiringNote: "Use short wires and confirm the module supports 3.3 V. I²C lines require pull-ups; most breakout modules already include them.",
     code: `#include <Wire.h>
@@ -182,9 +178,8 @@ display.display();`,
     level: "Intermediate",
     title: "LCD1602 Status Panel",
     intro: "Use an I²C backpack to control a 16 × 2 character display and design useful messages within a very small interface.",
-    image: "https://github.com/user-attachments/assets/b0b46067-8f01-401b-a87a-c077a97138b9",
-    imageAlt: "LCD1602 character display with an I2C interface backpack",
-    source: "https://github.com/ooikk/Arduino-Documentation/tree/main/04_I2C_LCD1602A",
+    input: "System data",
+    output: "Two-line status",
     duration: "2–3 hours",
     difficulty: "I²C interface",
     parts: ["ESP32-S3 development board", "LCD1602 display", "PCF8574-based I²C backpack", "Four jumper wires", "Optional logic-level shifter depending on the backpack"],
@@ -194,10 +189,10 @@ display.display();`,
       ["Voltage compatibility", "Many backpacks are powered from 5 V and pull SDA/SCL up to that supply. ESP32-S3 is a 3.3 V device, so verify pull-up voltage and use level shifting when necessary."]
     ],
     connections: [
-      ["Approved supply", "VCC", "Per module"],
-      ["GND", "GND", "Common ground"],
-      ["GPIO 8", "SDA", "I²C data"],
-      ["GPIO 9", "SCL", "I²C clock"]
+      ["Approved supply", "VCC", "Power connection", "connection"],
+      ["GND", "GND", "Common ground", "connection"],
+      ["GPIO 8", "SDA", "Bidirectional I²C data", "both"],
+      ["GPIO 9", "SCL", "ESP32 → display clock", "out"]
     ],
     wiringNote: "Do not assume that a 5 V-powered backpack is automatically safe for ESP32-S3 signal pins. Measure or inspect the pull-ups; keep SDA and SCL at 3.3 V logic.",
     code: `#include <Wire.h>
@@ -226,9 +221,8 @@ lcd.print("Value: ");`,
     level: "Intermediate",
     title: "Colour TFT Dashboard",
     intro: "Drive a 1.8-inch ST7735 display over SPI and build a compact dashboard while reasoning about bandwidth, colour, and redraw cost.",
-    image: "https://github.com/user-attachments/assets/0273c9c0-9692-4ec4-8902-4d963e92de3c",
-    imageAlt: "1.8-inch ST7735 SPI colour TFT display module",
-    source: "https://github.com/ooikk/Arduino-Documentation/tree/main/05_1.8_TFT_SPI_Display",
+    input: "Live measurements",
+    output: "Colour dashboard",
     duration: "3–4 hours",
     difficulty: "SPI graphics",
     parts: ["ESP32-S3 development board", "1.8-inch ST7735 or ST7735S SPI TFT", "Jumper wires", "TFT_eSPI or Adafruit ST7735/GFX libraries", "Suitable external supply if the module load requires it"],
@@ -238,14 +232,14 @@ lcd.print("Value: ");`,
       ["Redraw strategy", "Clearing and repainting the entire display can flicker and waste time. Update only fields that have changed when possible."]
     ],
     connections: [
-      ["3V3 / rated supply", "VDD", "Verify module"],
-      ["GND", "GND", "Common ground"],
-      ["GPIO 12", "SCL / SCK", "SPI clock"],
-      ["GPIO 11", "SDA / MOSI", "Pixel data"],
-      ["GPIO 10", "RST", "Reset"],
-      ["GPIO 14", "DC / RS", "Data or command"],
-      ["GPIO 9", "CS", "Chip select"],
-      ["3V3 / PWM GPIO", "BLK", "Backlight"]
+      ["3V3 / rated supply", "VDD", "Power connection", "connection"],
+      ["GND", "GND", "Common ground", "connection"],
+      ["GPIO 12", "SCL / SCK", "ESP32 → display clock", "out"],
+      ["GPIO 11", "SDA / MOSI", "ESP32 → display data", "out"],
+      ["GPIO 10", "RST", "ESP32 → display reset", "out"],
+      ["GPIO 14", "DC / RS", "ESP32 → display control", "out"],
+      ["GPIO 9", "CS", "ESP32 → display select", "out"],
+      ["3V3 / PWM GPIO", "BLK", "Power or ESP32 PWM", "out"]
     ],
     wiringNote: "Module power arrangements vary. Confirm whether VDD accepts 3.3 V or 5 V, while keeping all ESP32-S3 logic signals at 3.3 V.",
     code: `#include <Adafruit_GFX.h>
@@ -273,9 +267,8 @@ tft.print("Sensor dashboard");`,
     level: "Advanced",
     title: "Touch-Screen Controller",
     intro: "Combine an ILI9488 colour display and XPT2046 touch controller to build an interactive embedded interface.",
-    image: "https://github.com/user-attachments/assets/29e8fc7e-41b9-4c76-9e46-2bd30373cb39",
-    imageAlt: "3.5-inch ILI9488 touch-screen module",
-    source: "https://github.com/ooikk/Arduino-Documentation/tree/main/06_3.5_TFT_Touch_Display",
+    input: "Touch coordinates",
+    output: "Interactive screen",
     duration: "4–6 hours",
     difficulty: "Shared peripherals",
     parts: ["ESP32-S3 development board", "ILI9488 SPI TFT with XPT2046 touch", "Stable external supply suited to the module", "Jumper wires", "TFT_eSPI and XPT2046-compatible libraries"],
@@ -285,16 +278,16 @@ tft.print("Sensor dashboard");`,
       ["Calibration", "Raw touch readings must be mapped to screen coordinates. Rotation changes the mapping, so calibration belongs to the final orientation."]
     ],
     connections: [
-      ["Rated supply", "VCC", "Check J1 pad"],
-      ["GND", "GND", "Common ground"],
-      ["GPIO 12", "SCK + T_CLK", "Shared clock"],
-      ["GPIO 11", "MOSI + T_DIN", "Shared output"],
-      ["GPIO 13", "T_DO", "Touch input"],
-      ["GPIO 9", "TFT_CS", "Display select"],
-      ["GPIO 8", "T_CS", "Touch select"],
-      ["GPIO 10", "RESET", "Display reset"],
-      ["GPIO 14", "DC / RS", "Display command"],
-      ["Not connected", "TFT_SDO", "Avoid bus conflict"]
+      ["Rated supply", "VCC", "Power connection", "connection"],
+      ["GND", "GND", "Common ground", "connection"],
+      ["GPIO 12", "SCK + T_CLK", "ESP32 → shared clock", "out"],
+      ["GPIO 11", "MOSI + T_DIN", "ESP32 → display/touch data", "out"],
+      ["GPIO 13", "T_DO", "Touch controller → ESP32", "in"],
+      ["GPIO 9", "TFT_CS", "ESP32 → display select", "out"],
+      ["GPIO 8", "T_CS", "ESP32 → touch select", "out"],
+      ["GPIO 10", "RESET", "ESP32 → display reset", "out"],
+      ["GPIO 14", "DC / RS", "ESP32 → display command", "out"],
+      ["Not connected", "TFT_SDO", "Avoid bus conflict", "connection"]
     ],
     wiringNote: "Some ILI9488 modules do not release TFT SDO/MISO correctly. Leave the display SDO disconnected when it interferes with touch or SD communication. Power requirements depend on the module’s J1 configuration.",
     code: `#include <TFT_eSPI.h>
@@ -323,9 +316,8 @@ if (touch.touched()) {
     level: "Advanced",
     title: "SD Data Display",
     intro: "Store and retrieve files on a microSD card, then present selected data or images on a display without bus conflicts.",
-    image: "https://github.com/user-attachments/assets/9295b346-a905-4f83-9c77-06c00559bef4",
-    imageAlt: "ESP32-S3 wiring diagram for separate TFT and SD-card SPI buses",
-    source: "https://github.com/ooikk/Arduino-Documentation/tree/main/07_SDCard_Display",
+    input: "Files and data",
+    output: "Display or log",
     duration: "4–6 hours",
     difficulty: "Storage and buses",
     parts: ["ESP32-S3 development board", "microSD breakout or display with SD slot", "FAT32-formatted microSD card", "Jumper wires", "Optional TFT display", "SD and SPI libraries"],
@@ -335,12 +327,12 @@ if (touch.touched()) {
       ["Write integrity", "Removing power during a write can corrupt the file system. Close files, flush important data, and design a safe shutdown process."]
     ],
     connections: [
-      ["3V3 / rated supply", "VCC", "Verify module"],
-      ["GND", "GND", "Common ground"],
-      ["GPIO 4", "SCK", "VSPI clock"],
-      ["GPIO 6", "MOSI", "ESP32 → card"],
-      ["GPIO 5", "MISO", "Card → ESP32"],
-      ["GPIO 7", "CS", "Card select"]
+      ["3V3 / rated supply", "VCC", "Power connection", "connection"],
+      ["GND", "GND", "Common ground", "connection"],
+      ["GPIO 4", "SCK", "ESP32 → card clock", "out"],
+      ["GPIO 6", "MOSI", "ESP32 → card data", "out"],
+      ["GPIO 5", "MISO", "Card → ESP32 data", "in"],
+      ["GPIO 7", "CS", "ESP32 → card select", "out"]
     ],
     wiringNote: "This example places the SD card on a separate SPI peripheral from the TFT. Keep logic at 3.3 V and use an SD module designed for the supply voltage you provide.",
     code: `#include <SPI.h>
@@ -368,9 +360,8 @@ if (!SD.begin(SD_CS, sdBus, 16000000)) {
     level: "Advanced",
     title: "Protocol Test Bench",
     intro: "Compare UART, I²C, SPI, and I²S by wiring real peripherals and observing how each protocol moves data.",
-    image: "https://github.com/user-attachments/assets/140ca81c-1869-4194-9212-f1367c9c127f",
-    imageAlt: "SPI module overview used as one station in the communication protocol test bench",
-    source: "https://github.com/ooikk/Arduino-Documentation",
+    input: "Serial signals",
+    output: "Verified transfer",
     duration: "4–6 hours",
     difficulty: "Communications lab",
     parts: ["ESP32-S3 development board", "Second microcontroller or UART adapter", "I²C sensor or display", "SPI peripheral", "Optional I²S microphone or amplifier", "Logic analyser if available"],
@@ -381,18 +372,18 @@ if (!SD.begin(SD_CS, sdBus, 16000000)) {
       ["I²S", "A dedicated digital-audio bus separates bit clock, word/channel select, and sample data."]
     ],
     connections: [
-      ["GPIO 17 TX", "UART RX", "Cross-connect"],
-      ["GPIO 18 RX", "UART TX", "Cross-connect"],
-      ["GPIO 8", "I²C SDA", "Shared data"],
-      ["GPIO 9", "I²C SCL", "Clock"],
-      ["GPIO 11", "SPI MOSI", "Controller out"],
-      ["GPIO 13", "SPI MISO", "Controller in"],
-      ["GPIO 12", "SPI SCK", "Clock"],
-      ["GPIO 10", "SPI CS", "Select"],
-      ["GPIO 4", "I²S BCLK", "Audio clock"],
-      ["GPIO 5", "I²S LRCK", "Channel select"],
-      ["GPIO 1", "I²S DATA", "Audio samples"],
-      ["GND", "All modules", "Common reference"]
+      ["GPIO 17 TX", "UART RX", "ESP32 → external UART", "out"],
+      ["GPIO 18 RX", "UART TX", "External UART → ESP32", "in"],
+      ["GPIO 8", "I²C SDA", "Bidirectional I²C data", "both"],
+      ["GPIO 9", "I²C SCL", "ESP32 → I²C clock", "out"],
+      ["GPIO 11", "SPI MOSI", "ESP32 → SPI peripheral", "out"],
+      ["GPIO 13", "SPI MISO", "SPI peripheral → ESP32", "in"],
+      ["GPIO 12", "SPI SCK", "ESP32 → SPI clock", "out"],
+      ["GPIO 10", "SPI CS", "ESP32 → SPI select", "out"],
+      ["GPIO 4", "I²S BCLK", "ESP32 → audio bit clock", "out"],
+      ["GPIO 5", "I²S LRCK", "ESP32 → channel clock", "out"],
+      ["GPIO 1", "I²S DATA", "Direction depends on audio device", "both"],
+      ["GND", "All modules", "Common reference", "connection"]
     ],
     wiringNote: "Treat the pin map as a controlled lab allocation, not a universal default. ESP32-S3’s GPIO matrix allows many peripherals to be remapped; always check for board-specific reserved pins.",
     code: `#include <Wire.h>
@@ -429,16 +420,23 @@ function list(items, className = "") {
 function connectionDiagram(project) {
   const height = Math.max(330, 120 + project.connections.length * 40);
   const palette = ["#175fe9", "#13b8c4", "#ff7a45", "#7a5af8", "#299c5f", "#d8446f"];
-  const lines = project.connections.map(([left, right, role], index) => {
+  const lines = project.connections.map(([left, right, role, direction], index) => {
     const y = 88 + index * 40;
     const color = palette[index % palette.length];
+    const directionSymbol = direction === "in" ? "←" : direction === "both" ? "↔" : direction === "connection" ? "—" : "→";
+    const leftEnd = direction === "in" || direction === "both"
+      ? `<polygon points="245,${y} 258,${y - 7} 258,${y + 7}" fill="${color}" />`
+      : `<circle cx="245" cy="${y}" r="6" fill="${color}" />`;
+    const rightEnd = direction === "out" || direction === "both"
+      ? `<polygon points="675,${y} 662,${y - 7} 662,${y + 7}" fill="${color}" />`
+      : `<circle cx="675" cy="${y}" r="6" fill="${color}" />`;
     return `
       <g>
         <line x1="245" y1="${y}" x2="675" y2="${y}" stroke="${color}" stroke-width="4" />
-        <circle cx="245" cy="${y}" r="6" fill="${color}" />
-        <circle cx="675" cy="${y}" r="6" fill="${color}" />
+        ${leftEnd}
+        ${rightEnd}
         <rect x="318" y="${y - 14}" width="284" height="28" rx="8" fill="#ffffff" stroke="${color}" />
-        <text x="460" y="${y + 5}" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">${escapeHtml(left)} → ${escapeHtml(right)}</text>
+        <text x="460" y="${y + 5}" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">${escapeHtml(left)} ${directionSymbol} ${escapeHtml(right)}</text>
         <text x="460" y="${y + 25}" text-anchor="middle" fill="#516078" font-size="11">${escapeHtml(role)}</text>
       </g>`;
   }).join("");
@@ -451,7 +449,8 @@ function connectionDiagram(project) {
         <text x="785" y="60" text-anchor="middle" fill="#081a35" font-size="16" font-weight="800">${escapeHtml(project.short)} MODULE</text>
         ${lines}
       </svg>
-    </div>`;
+    </div>
+    <p class="diagram-legend"><strong>Arrow key:</strong> → sent by ESP32-S3 · ← sent by the external device · ↔ bidirectional data · — power, ground, or physical connection</p>`;
 }
 
 function page(project, index) {
@@ -490,9 +489,16 @@ function page(project, index) {
           <p class="lead">${escapeHtml(project.intro)}</p>
           <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
         </div>
-        <figure class="project-figure">
-          <img src="${project.image}" alt="${escapeHtml(project.imageAlt)}" loading="eager" referrerpolicy="no-referrer">
-          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        <figure class="project-visual" aria-label="${escapeHtml(project.title)} signal flow">
+          <p class="visual-label">Project signal flow</p>
+          <div class="signal-flow">
+            <div class="flow-stage"><small>Input</small><strong>${escapeHtml(project.input)}</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage primary"><small>Process</small><strong>ESP32-S3</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage"><small>Output</small><strong>${escapeHtml(project.output)}</strong></div>
+          </div>
+          <figcaption>A functional overview of how information moves through this project.</figcaption>
         </figure>
       </div>
     </section>
@@ -555,10 +561,10 @@ function page(project, index) {
             ${list(project.parts, "compact-list")}
           </div>
           <div class="card">
-            <p class="eyebrow">Full reference</p>
-            <h3>Continue with the source material</h3>
-            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
-            <a class="link-arrow" href="${project.source}">Open complete resources →</a>
+            <p class="eyebrow">Private course material</p>
+            <h3>Complete code is provided during the lesson</h3>
+            <p>Students receive the full sketch, library setup notes, and supporting files directly as part of the guided course.</p>
+            <a class="link-arrow" href="../contact.html">Ask about this project →</a>
           </div>
         </aside>
       </div>

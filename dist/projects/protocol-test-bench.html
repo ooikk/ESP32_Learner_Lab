@@ -27,9 +27,16 @@
           <p class="lead">Compare UART, I²C, SPI, and I²S by wiring real peripherals and observing how each protocol moves data.</p>
           <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
         </div>
-        <figure class="project-figure">
-          <img src="https://github.com/user-attachments/assets/140ca81c-1869-4194-9212-f1367c9c127f" alt="SPI module overview used as one station in the communication protocol test bench" loading="eager" referrerpolicy="no-referrer">
-          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        <figure class="project-visual" aria-label="Protocol Test Bench signal flow">
+          <p class="visual-label">Project signal flow</p>
+          <div class="signal-flow">
+            <div class="flow-stage"><small>Input</small><strong>Serial signals</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage primary"><small>Process</small><strong>ESP32-S3</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage"><small>Output</small><strong>Verified transfer</strong></div>
+          </div>
+          <figcaption>A functional overview of how information moves through this project.</figcaption>
         </figure>
       </div>
     </section>
@@ -70,101 +77,102 @@
       <g>
         <line x1="245" y1="88" x2="675" y2="88" stroke="#175fe9" stroke-width="4" />
         <circle cx="245" cy="88" r="6" fill="#175fe9" />
-        <circle cx="675" cy="88" r="6" fill="#175fe9" />
+        <polygon points="675,88 662,81 662,95" fill="#175fe9" />
         <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
         <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 17 TX → UART RX</text>
-        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Cross-connect</text>
+        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">ESP32 → external UART</text>
       </g>
       <g>
         <line x1="245" y1="128" x2="675" y2="128" stroke="#13b8c4" stroke-width="4" />
-        <circle cx="245" cy="128" r="6" fill="#13b8c4" />
+        <polygon points="245,128 258,121 258,135" fill="#13b8c4" />
         <circle cx="675" cy="128" r="6" fill="#13b8c4" />
         <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
-        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 18 RX → UART TX</text>
-        <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Cross-connect</text>
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 18 RX ← UART TX</text>
+        <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">External UART → ESP32</text>
       </g>
       <g>
         <line x1="245" y1="168" x2="675" y2="168" stroke="#ff7a45" stroke-width="4" />
-        <circle cx="245" cy="168" r="6" fill="#ff7a45" />
-        <circle cx="675" cy="168" r="6" fill="#ff7a45" />
+        <polygon points="245,168 258,161 258,175" fill="#ff7a45" />
+        <polygon points="675,168 662,161 662,175" fill="#ff7a45" />
         <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
-        <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 8 → I²C SDA</text>
-        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">Shared data</text>
+        <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 8 ↔ I²C SDA</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">Bidirectional I²C data</text>
       </g>
       <g>
         <line x1="245" y1="208" x2="675" y2="208" stroke="#7a5af8" stroke-width="4" />
         <circle cx="245" cy="208" r="6" fill="#7a5af8" />
-        <circle cx="675" cy="208" r="6" fill="#7a5af8" />
+        <polygon points="675,208 662,201 662,215" fill="#7a5af8" />
         <rect x="318" y="194" width="284" height="28" rx="8" fill="#ffffff" stroke="#7a5af8" />
         <text x="460" y="213" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 9 → I²C SCL</text>
-        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">Clock</text>
+        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">ESP32 → I²C clock</text>
       </g>
       <g>
         <line x1="245" y1="248" x2="675" y2="248" stroke="#299c5f" stroke-width="4" />
         <circle cx="245" cy="248" r="6" fill="#299c5f" />
-        <circle cx="675" cy="248" r="6" fill="#299c5f" />
+        <polygon points="675,248 662,241 662,255" fill="#299c5f" />
         <rect x="318" y="234" width="284" height="28" rx="8" fill="#ffffff" stroke="#299c5f" />
         <text x="460" y="253" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 11 → SPI MOSI</text>
-        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">Controller out</text>
+        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">ESP32 → SPI peripheral</text>
       </g>
       <g>
         <line x1="245" y1="288" x2="675" y2="288" stroke="#d8446f" stroke-width="4" />
-        <circle cx="245" cy="288" r="6" fill="#d8446f" />
+        <polygon points="245,288 258,281 258,295" fill="#d8446f" />
         <circle cx="675" cy="288" r="6" fill="#d8446f" />
         <rect x="318" y="274" width="284" height="28" rx="8" fill="#ffffff" stroke="#d8446f" />
-        <text x="460" y="293" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 13 → SPI MISO</text>
-        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">Controller in</text>
+        <text x="460" y="293" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 13 ← SPI MISO</text>
+        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">SPI peripheral → ESP32</text>
       </g>
       <g>
         <line x1="245" y1="328" x2="675" y2="328" stroke="#175fe9" stroke-width="4" />
         <circle cx="245" cy="328" r="6" fill="#175fe9" />
-        <circle cx="675" cy="328" r="6" fill="#175fe9" />
+        <polygon points="675,328 662,321 662,335" fill="#175fe9" />
         <rect x="318" y="314" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
         <text x="460" y="333" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 12 → SPI SCK</text>
-        <text x="460" y="353" text-anchor="middle" fill="#516078" font-size="11">Clock</text>
+        <text x="460" y="353" text-anchor="middle" fill="#516078" font-size="11">ESP32 → SPI clock</text>
       </g>
       <g>
         <line x1="245" y1="368" x2="675" y2="368" stroke="#13b8c4" stroke-width="4" />
         <circle cx="245" cy="368" r="6" fill="#13b8c4" />
-        <circle cx="675" cy="368" r="6" fill="#13b8c4" />
+        <polygon points="675,368 662,361 662,375" fill="#13b8c4" />
         <rect x="318" y="354" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
         <text x="460" y="373" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 10 → SPI CS</text>
-        <text x="460" y="393" text-anchor="middle" fill="#516078" font-size="11">Select</text>
+        <text x="460" y="393" text-anchor="middle" fill="#516078" font-size="11">ESP32 → SPI select</text>
       </g>
       <g>
         <line x1="245" y1="408" x2="675" y2="408" stroke="#ff7a45" stroke-width="4" />
         <circle cx="245" cy="408" r="6" fill="#ff7a45" />
-        <circle cx="675" cy="408" r="6" fill="#ff7a45" />
+        <polygon points="675,408 662,401 662,415" fill="#ff7a45" />
         <rect x="318" y="394" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
         <text x="460" y="413" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 4 → I²S BCLK</text>
-        <text x="460" y="433" text-anchor="middle" fill="#516078" font-size="11">Audio clock</text>
+        <text x="460" y="433" text-anchor="middle" fill="#516078" font-size="11">ESP32 → audio bit clock</text>
       </g>
       <g>
         <line x1="245" y1="448" x2="675" y2="448" stroke="#7a5af8" stroke-width="4" />
         <circle cx="245" cy="448" r="6" fill="#7a5af8" />
-        <circle cx="675" cy="448" r="6" fill="#7a5af8" />
+        <polygon points="675,448 662,441 662,455" fill="#7a5af8" />
         <rect x="318" y="434" width="284" height="28" rx="8" fill="#ffffff" stroke="#7a5af8" />
         <text x="460" y="453" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 5 → I²S LRCK</text>
-        <text x="460" y="473" text-anchor="middle" fill="#516078" font-size="11">Channel select</text>
+        <text x="460" y="473" text-anchor="middle" fill="#516078" font-size="11">ESP32 → channel clock</text>
       </g>
       <g>
         <line x1="245" y1="488" x2="675" y2="488" stroke="#299c5f" stroke-width="4" />
-        <circle cx="245" cy="488" r="6" fill="#299c5f" />
-        <circle cx="675" cy="488" r="6" fill="#299c5f" />
+        <polygon points="245,488 258,481 258,495" fill="#299c5f" />
+        <polygon points="675,488 662,481 662,495" fill="#299c5f" />
         <rect x="318" y="474" width="284" height="28" rx="8" fill="#ffffff" stroke="#299c5f" />
-        <text x="460" y="493" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 1 → I²S DATA</text>
-        <text x="460" y="513" text-anchor="middle" fill="#516078" font-size="11">Audio samples</text>
+        <text x="460" y="493" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 1 ↔ I²S DATA</text>
+        <text x="460" y="513" text-anchor="middle" fill="#516078" font-size="11">Direction depends on audio device</text>
       </g>
       <g>
         <line x1="245" y1="528" x2="675" y2="528" stroke="#d8446f" stroke-width="4" />
         <circle cx="245" cy="528" r="6" fill="#d8446f" />
         <circle cx="675" cy="528" r="6" fill="#d8446f" />
         <rect x="318" y="514" width="284" height="28" rx="8" fill="#ffffff" stroke="#d8446f" />
-        <text x="460" y="533" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND → All modules</text>
+        <text x="460" y="533" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND — All modules</text>
         <text x="460" y="553" text-anchor="middle" fill="#516078" font-size="11">Common reference</text>
       </g>
       </svg>
     </div>
+    <p class="diagram-legend"><strong>Arrow key:</strong> → sent by ESP32-S3 · ← sent by the external device · ↔ bidirectional data · — power, ground, or physical connection</p>
             <div class="notice"><strong>Before applying power</strong><p>Treat the pin map as a controlled lab allocation, not a universal default. ESP32-S3’s GPIO matrix allows many peripherals to be remapped; always check for board-specific reserved pins.</p></div>
           </section>
 
@@ -214,10 +222,10 @@ SPI.begin(12, 13, 11, 10);             // SCK, MISO, MOSI, CS
             <ul class="compact-list"><li>ESP32-S3 development board</li><li>Second microcontroller or UART adapter</li><li>I²C sensor or display</li><li>SPI peripheral</li><li>Optional I²S microphone or amplifier</li><li>Logic analyser if available</li></ul>
           </div>
           <div class="card">
-            <p class="eyebrow">Full reference</p>
-            <h3>Continue with the source material</h3>
-            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
-            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation">Open complete resources →</a>
+            <p class="eyebrow">Private course material</p>
+            <h3>Complete code is provided during the lesson</h3>
+            <p>Students receive the full sketch, library setup notes, and supporting files directly as part of the guided course.</p>
+            <a class="link-arrow" href="../contact.html">Ask about this project →</a>
           </div>
         </aside>
       </div>

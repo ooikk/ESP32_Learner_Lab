@@ -27,9 +27,16 @@
           <p class="lead">Read a push button reliably and use it to control an output without leaving the input pin electrically undefined.</p>
           <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
         </div>
-        <figure class="project-figure">
-          <img src="https://github.com/user-attachments/assets/36c7d625-592f-488f-8238-431cbe2307f8" alt="Push-button wiring example for an ESP32 digital input" loading="eager" referrerpolicy="no-referrer">
-          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        <figure class="project-visual" aria-label="Inputs &amp; Responsive Control signal flow">
+          <p class="visual-label">Project signal flow</p>
+          <div class="signal-flow">
+            <div class="flow-stage"><small>Input</small><strong>Push button</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage primary"><small>Process</small><strong>ESP32-S3</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage"><small>Output</small><strong>LED state</strong></div>
+          </div>
+          <figcaption>A functional overview of how information moves through this project.</figcaption>
         </figure>
       </div>
     </section>
@@ -68,30 +75,31 @@
         
       <g>
         <line x1="245" y1="88" x2="675" y2="88" stroke="#175fe9" stroke-width="4" />
-        <circle cx="245" cy="88" r="6" fill="#175fe9" />
+        <polygon points="245,88 258,81 258,95" fill="#175fe9" />
         <circle cx="675" cy="88" r="6" fill="#175fe9" />
         <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
-        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 4 → Button terminal 1</text>
-        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Input</text>
+        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 4 ← Button terminal 1</text>
+        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Button → ESP32</text>
       </g>
       <g>
         <line x1="245" y1="128" x2="675" y2="128" stroke="#13b8c4" stroke-width="4" />
         <circle cx="245" cy="128" r="6" fill="#13b8c4" />
         <circle cx="675" cy="128" r="6" fill="#13b8c4" />
         <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
-        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND → Button terminal 2</text>
-        <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Return</text>
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND — Button terminal 2</text>
+        <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Common return</text>
       </g>
       <g>
         <line x1="245" y1="168" x2="675" y2="168" stroke="#ff7a45" stroke-width="4" />
         <circle cx="245" cy="168" r="6" fill="#ff7a45" />
-        <circle cx="675" cy="168" r="6" fill="#ff7a45" />
+        <polygon points="675,168 662,161 662,175" fill="#ff7a45" />
         <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
         <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 48 → Built-in RGB LED</text>
-        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">Output</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">ESP32 → LED</text>
       </g>
       </svg>
     </div>
+    <p class="diagram-legend"><strong>Arrow key:</strong> → sent by ESP32-S3 · ← sent by the external device · ↔ bidirectional data · — power, ground, or physical connection</p>
             <div class="notice"><strong>Before applying power</strong><p>This active-LOW arrangement uses INPUT_PULLUP. Never configure the button pin as OUTPUT: pressing the button could then short a HIGH output directly to ground.</p></div>
           </section>
 
@@ -140,10 +148,10 @@ void loop() {
             <ul class="compact-list"><li>ESP32-S3 development board</li><li>Momentary push button</li><li>Breadboard and two jumper wires</li><li>Built-in RGB LED or one LED with a suitable series resistor</li></ul>
           </div>
           <div class="card">
-            <p class="eyebrow">Full reference</p>
-            <h3>Continue with the source material</h3>
-            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
-            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/02_IO_Pins">Open complete resources →</a>
+            <p class="eyebrow">Private course material</p>
+            <h3>Complete code is provided during the lesson</h3>
+            <p>Students receive the full sketch, library setup notes, and supporting files directly as part of the guided course.</p>
+            <a class="link-arrow" href="../contact.html">Ask about this project →</a>
           </div>
         </aside>
       </div>

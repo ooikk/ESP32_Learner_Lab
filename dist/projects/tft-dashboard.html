@@ -27,9 +27,16 @@
           <p class="lead">Drive a 1.8-inch ST7735 display over SPI and build a compact dashboard while reasoning about bandwidth, colour, and redraw cost.</p>
           <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
         </div>
-        <figure class="project-figure">
-          <img src="https://github.com/user-attachments/assets/0273c9c0-9692-4ec4-8902-4d963e92de3c" alt="1.8-inch ST7735 SPI colour TFT display module" loading="eager" referrerpolicy="no-referrer">
-          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        <figure class="project-visual" aria-label="Colour TFT Dashboard signal flow">
+          <p class="visual-label">Project signal flow</p>
+          <div class="signal-flow">
+            <div class="flow-stage"><small>Input</small><strong>Live measurements</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage primary"><small>Process</small><strong>ESP32-S3</strong></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-stage"><small>Output</small><strong>Colour dashboard</strong></div>
+          </div>
+          <figcaption>A functional overview of how information moves through this project.</figcaption>
         </figure>
       </div>
     </section>
@@ -71,67 +78,68 @@
         <circle cx="245" cy="88" r="6" fill="#175fe9" />
         <circle cx="675" cy="88" r="6" fill="#175fe9" />
         <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
-        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3V3 / rated supply → VDD</text>
-        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Verify module</text>
+        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3V3 / rated supply — VDD</text>
+        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Power connection</text>
       </g>
       <g>
         <line x1="245" y1="128" x2="675" y2="128" stroke="#13b8c4" stroke-width="4" />
         <circle cx="245" cy="128" r="6" fill="#13b8c4" />
         <circle cx="675" cy="128" r="6" fill="#13b8c4" />
         <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
-        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND → GND</text>
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND — GND</text>
         <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Common ground</text>
       </g>
       <g>
         <line x1="245" y1="168" x2="675" y2="168" stroke="#ff7a45" stroke-width="4" />
         <circle cx="245" cy="168" r="6" fill="#ff7a45" />
-        <circle cx="675" cy="168" r="6" fill="#ff7a45" />
+        <polygon points="675,168 662,161 662,175" fill="#ff7a45" />
         <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
         <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 12 → SCL / SCK</text>
-        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">SPI clock</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display clock</text>
       </g>
       <g>
         <line x1="245" y1="208" x2="675" y2="208" stroke="#7a5af8" stroke-width="4" />
         <circle cx="245" cy="208" r="6" fill="#7a5af8" />
-        <circle cx="675" cy="208" r="6" fill="#7a5af8" />
+        <polygon points="675,208 662,201 662,215" fill="#7a5af8" />
         <rect x="318" y="194" width="284" height="28" rx="8" fill="#ffffff" stroke="#7a5af8" />
         <text x="460" y="213" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 11 → SDA / MOSI</text>
-        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">Pixel data</text>
+        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display data</text>
       </g>
       <g>
         <line x1="245" y1="248" x2="675" y2="248" stroke="#299c5f" stroke-width="4" />
         <circle cx="245" cy="248" r="6" fill="#299c5f" />
-        <circle cx="675" cy="248" r="6" fill="#299c5f" />
+        <polygon points="675,248 662,241 662,255" fill="#299c5f" />
         <rect x="318" y="234" width="284" height="28" rx="8" fill="#ffffff" stroke="#299c5f" />
         <text x="460" y="253" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 10 → RST</text>
-        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">Reset</text>
+        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display reset</text>
       </g>
       <g>
         <line x1="245" y1="288" x2="675" y2="288" stroke="#d8446f" stroke-width="4" />
         <circle cx="245" cy="288" r="6" fill="#d8446f" />
-        <circle cx="675" cy="288" r="6" fill="#d8446f" />
+        <polygon points="675,288 662,281 662,295" fill="#d8446f" />
         <rect x="318" y="274" width="284" height="28" rx="8" fill="#ffffff" stroke="#d8446f" />
         <text x="460" y="293" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 14 → DC / RS</text>
-        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">Data or command</text>
+        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display control</text>
       </g>
       <g>
         <line x1="245" y1="328" x2="675" y2="328" stroke="#175fe9" stroke-width="4" />
         <circle cx="245" cy="328" r="6" fill="#175fe9" />
-        <circle cx="675" cy="328" r="6" fill="#175fe9" />
+        <polygon points="675,328 662,321 662,335" fill="#175fe9" />
         <rect x="318" y="314" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
         <text x="460" y="333" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 9 → CS</text>
-        <text x="460" y="353" text-anchor="middle" fill="#516078" font-size="11">Chip select</text>
+        <text x="460" y="353" text-anchor="middle" fill="#516078" font-size="11">ESP32 → display select</text>
       </g>
       <g>
         <line x1="245" y1="368" x2="675" y2="368" stroke="#13b8c4" stroke-width="4" />
         <circle cx="245" cy="368" r="6" fill="#13b8c4" />
-        <circle cx="675" cy="368" r="6" fill="#13b8c4" />
+        <polygon points="675,368 662,361 662,375" fill="#13b8c4" />
         <rect x="318" y="354" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
         <text x="460" y="373" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3V3 / PWM GPIO → BLK</text>
-        <text x="460" y="393" text-anchor="middle" fill="#516078" font-size="11">Backlight</text>
+        <text x="460" y="393" text-anchor="middle" fill="#516078" font-size="11">Power or ESP32 PWM</text>
       </g>
       </svg>
     </div>
+    <p class="diagram-legend"><strong>Arrow key:</strong> → sent by ESP32-S3 · ← sent by the external device · ↔ bidirectional data · — power, ground, or physical connection</p>
             <div class="notice"><strong>Before applying power</strong><p>Module power arrangements vary. Confirm whether VDD accepts 3.3 V or 5 V, while keeping all ESP32-S3 logic signals at 3.3 V.</p></div>
           </section>
 
@@ -181,10 +189,10 @@ tft.print(&quot;Sensor dashboard&quot;);</code></pre>
             <ul class="compact-list"><li>ESP32-S3 development board</li><li>1.8-inch ST7735 or ST7735S SPI TFT</li><li>Jumper wires</li><li>TFT_eSPI or Adafruit ST7735/GFX libraries</li><li>Suitable external supply if the module load requires it</li></ul>
           </div>
           <div class="card">
-            <p class="eyebrow">Full reference</p>
-            <h3>Continue with the source material</h3>
-            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
-            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/05_1.8_TFT_SPI_Display">Open complete resources →</a>
+            <p class="eyebrow">Private course material</p>
+            <h3>Complete code is provided during the lesson</h3>
+            <p>Students receive the full sketch, library setup notes, and supporting files directly as part of the guided course.</p>
+            <a class="link-arrow" href="../contact.html">Ask about this project →</a>
           </div>
         </aside>
       </div>
