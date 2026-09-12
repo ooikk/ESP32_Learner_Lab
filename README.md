@@ -22,6 +22,24 @@ All public files are in `dist/`. Each page is plain HTML and shares:
 - `dist/assets/site.js` for the mobile menu, curriculum tabs, year, and LED demonstration
 - `dist/assets/favicon.svg` for the browser icon
 
+The nine detailed project pages are generated into `dist/projects/` from
+`tools/build-project-pages.mjs`. Edit the project data in that script, then run:
+
+```bash
+node tools/build-project-pages.mjs
+```
+
+Each project page includes:
+
+- project description and learning level
+- engineering fundamentals
+- bill of materials
+- labelled ESP32-S3 connection diagram
+- partial instructional code
+- expected outcomes
+- troubleshooting and extension ideas
+- link to the complete source material
+
 Update the public email address in `dist/contact.html`. Course dates and fees are intentionally shown as “By arrangement” until public details are confirmed.
 
 ## GitHub Pages

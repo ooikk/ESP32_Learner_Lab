@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Present live measurements on a 128 × 64 OLED while learning I²C addressing, display buffers, and readable information design.">
+  <title>Compact OLED Instrument | ESP32 Learning Lab</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab<small>Electronics · C · IoT</small></span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <div class="nav-links" id="main-nav"><a href="../index.html">Home</a><a href="../technology.html">ESP32</a><a href="../projects.html" aria-current="page">Projects</a><a href="../curriculum.html">Lesson plans</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="project-detail-hero">
+      <div class="wrap project-hero-grid">
+        <div>
+          <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../projects.html">Projects</a><span>/</span><span>Compact OLED Instrument</span></div>
+          <div class="tags"><span class="tag">Intermediate</span><span class="tag">2–3 hours</span></div>
+          <h1>Compact OLED Instrument</h1>
+          <p class="lead">Present live measurements on a 128 × 64 OLED while learning I²C addressing, display buffers, and readable information design.</p>
+          <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
+        </div>
+        <figure class="project-figure">
+          <img src="https://github.com/user-attachments/assets/070bcd75-011a-4365-b36e-caba64e9435b" alt="Small 0.96-inch OLED display module" loading="eager" referrerpolicy="no-referrer">
+          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap project-facts">
+        <div><small>Level</small><strong>Intermediate</strong></div>
+        <div><small>Suggested time</small><strong>2–3 hours</strong></div>
+        <div><small>Focus</small><strong>I²C display</strong></div>
+        <div><small>Deliverable</small><strong>Working demonstration</strong></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap project-layout">
+        <article>
+          <section class="content-section">
+            <p class="eyebrow">01 · Engineering foundation</p>
+            <h2>Know what the circuit is doing.</h2>
+            <div class="foundation-grid">
+    <article class="foundation-item"><h3>I²C bus</h3><p>SDA carries addressed data and SCL carries the controller’s clock. Multiple devices can share the two signal lines when each has a different address.</p></article>
+    <article class="foundation-item"><h3>Addressing</h3><p>Many SSD1306 modules use address 0x3C; some use 0x3D. An I²C scanner is the fastest way to confirm what is present.</p></article>
+    <article class="foundation-item"><h3>Frame buffer</h3><p>Graphics are composed in memory and sent to the display when display.display() is called. The visible screen may not change until that transfer occurs.</p></article></div>
+          </section>
+
+          <section class="content-section" id="wiring">
+            <p class="eyebrow">02 · Connections</p>
+            <h2>Wire it to the ESP32-S3.</h2>
+            
+    <div class="diagram-frame" role="img" aria-label="Connection diagram between ESP32-S3 and Compact OLED Instrument hardware">
+      <svg viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
+        <rect x="25" y="30" width="220" height="270" rx="22" fill="#081a35"/>
+        <text x="135" y="60" text-anchor="middle" fill="#c9f45a" font-size="18" font-weight="800">ESP32-S3</text>
+        <rect x="675" y="30" width="220" height="270" rx="22" fill="#eaf0ff" stroke="#175fe9" stroke-width="2"/>
+        <text x="785" y="60" text-anchor="middle" fill="#081a35" font-size="16" font-weight="800">OLED MODULE</text>
+        
+      <g>
+        <line x1="245" y1="88" x2="675" y2="88" stroke="#175fe9" stroke-width="4" />
+        <circle cx="245" cy="88" r="6" fill="#175fe9" />
+        <circle cx="675" cy="88" r="6" fill="#175fe9" />
+        <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
+        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3V3 → VCC</text>
+        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Power</text>
+      </g>
+      <g>
+        <line x1="245" y1="128" x2="675" y2="128" stroke="#13b8c4" stroke-width="4" />
+        <circle cx="245" cy="128" r="6" fill="#13b8c4" />
+        <circle cx="675" cy="128" r="6" fill="#13b8c4" />
+        <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND → GND</text>
+        <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Common ground</text>
+      </g>
+      <g>
+        <line x1="245" y1="168" x2="675" y2="168" stroke="#ff7a45" stroke-width="4" />
+        <circle cx="245" cy="168" r="6" fill="#ff7a45" />
+        <circle cx="675" cy="168" r="6" fill="#ff7a45" />
+        <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
+        <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 8 → SDA</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">I²C data</text>
+      </g>
+      <g>
+        <line x1="245" y1="208" x2="675" y2="208" stroke="#7a5af8" stroke-width="4" />
+        <circle cx="245" cy="208" r="6" fill="#7a5af8" />
+        <circle cx="675" cy="208" r="6" fill="#7a5af8" />
+        <rect x="318" y="194" width="284" height="28" rx="8" fill="#ffffff" stroke="#7a5af8" />
+        <text x="460" y="213" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 9 → SCL</text>
+        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">I²C clock</text>
+      </g>
+      </svg>
+    </div>
+            <div class="notice"><strong>Before applying power</strong><p>Use short wires and confirm the module supports 3.3 V. I²C lines require pull-ups; most breakout modules already include them.</p></div>
+          </section>
+
+          <section class="content-section" id="code">
+            <p class="eyebrow">03 · Code focus</p>
+            <h2>Study the important pattern.</h2>
+            <pre class="code project-code"><code>#include &lt;Wire.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+
+Adafruit_SSD1306 display(128, 64, &amp;Wire, -1);
+
+Wire.begin(8, 9);
+display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+display.clearDisplay();
+display.setCursor(0, 0);
+display.print(sensorValue);
+display.display();</code></pre>
+            <p class="code-note">This is an instructional extract, not the complete project. Error handling, library setup, and supporting functions may be omitted deliberately.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">04 · Project outcome</p>
+            <h2>What a successful build demonstrates.</h2>
+            <ul class="outcome-list"><li>Confirm the OLED address with a bus scan</li><li>Initialise the display on GPIO 8 and GPIO 9</li><li>Show a value, unit, and status label</li><li>Explain why a buffered display needs an explicit refresh</li></ul>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">05 · Diagnose</p>
+            <h2>Use symptoms as evidence.</h2>
+            <div class="table-wrap"><table class="spec-table troubleshooting-table"><thead><tr><th>Symptom</th><th>First checks</th></tr></thead><tbody>
+    <tr><th scope="row">Display remains blank</th><td>Check the I²C address, VCC/GND polarity, and call display.display() after drawing.</td></tr>
+    <tr><th scope="row">Allocation failed</th><td>Confirm the correct display dimensions and that sufficient RAM remains.</td></tr>
+    <tr><th scope="row">Text is clipped</th><td>Reset the cursor and clear or overwrite the previous field before printing a new value.</td></tr></tbody></table></div>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">06 · Extend</p>
+            <h2>Move beyond the first demonstration.</h2>
+            <ul class="extension-grid"><li>Add icons and a bar graph</li><li>Auto-scale a sensor value</li><li>Share the bus with a second sensor</li><li>Refresh only when the displayed value changes</li></ul>
+          </section>
+        </article>
+
+        <aside class="project-sidebar">
+          <div class="card">
+            <p class="eyebrow">Equipment</p>
+            <h3>What you need</h3>
+            <ul class="compact-list"><li>ESP32-S3 development board</li><li>0.96-inch 128 × 64 SSD1306 I²C OLED</li><li>Four jumper wires</li><li>Optional analogue or digital sensor</li></ul>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Full reference</p>
+            <h3>Continue with the source material</h3>
+            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
+            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/04_I2C_0.96_OLED">Open complete resources →</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <nav class="wrap project-nav" aria-label="Other project examples">
+      <a href="rfid-access-controller.html"><span>Previous project</span><strong>← RFID Access Controller</strong></a>
+      <a href="../projects.html"><span>All projects</span><strong>Project library</strong></a>
+      <a href="lcd-status-panel.html"><span>Next project</span><strong>LCD1602 Status Panel →</strong></a>
+    </nav>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab</span></a><div class="footer-links"><a href="../about.html">About</a><a href="../curriculum.html">Lesson plans</a><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a></div></div><p class="copyright">© <span data-year></span> Kian Keong Ooi. Verify every pin assignment against your exact board and module.</p></div></footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

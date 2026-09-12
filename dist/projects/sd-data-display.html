@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Store and retrieve files on a microSD card, then present selected data or images on a display without bus conflicts.">
+  <title>SD Data Display | ESP32 Learning Lab</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab<small>Electronics · C · IoT</small></span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <div class="nav-links" id="main-nav"><a href="../index.html">Home</a><a href="../technology.html">ESP32</a><a href="../projects.html" aria-current="page">Projects</a><a href="../curriculum.html">Lesson plans</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="project-detail-hero">
+      <div class="wrap project-hero-grid">
+        <div>
+          <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../projects.html">Projects</a><span>/</span><span>SD Data Display</span></div>
+          <div class="tags"><span class="tag">Advanced</span><span class="tag">4–6 hours</span></div>
+          <h1>SD Data Display</h1>
+          <p class="lead">Store and retrieve files on a microSD card, then present selected data or images on a display without bus conflicts.</p>
+          <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
+        </div>
+        <figure class="project-figure">
+          <img src="https://github.com/user-attachments/assets/9295b346-a905-4f83-9c77-06c00559bef4" alt="ESP32-S3 wiring diagram for separate TFT and SD-card SPI buses" loading="eager" referrerpolicy="no-referrer">
+          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap project-facts">
+        <div><small>Level</small><strong>Advanced</strong></div>
+        <div><small>Suggested time</small><strong>4–6 hours</strong></div>
+        <div><small>Focus</small><strong>Storage and buses</strong></div>
+        <div><small>Deliverable</small><strong>Working demonstration</strong></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap project-layout">
+        <article>
+          <section class="content-section">
+            <p class="eyebrow">01 · Engineering foundation</p>
+            <h2>Know what the circuit is doing.</h2>
+            <div class="foundation-grid">
+    <article class="foundation-item"><h3>Block storage and a file system</h3><p>The card stores sectors; the FAT file system organises those sectors into named files and directories.</p></article>
+    <article class="foundation-item"><h3>SPI ownership</h3><p>A card can use a dedicated SPI peripheral or share a bus with a display. Shared devices need separate CS pins and disciplined initialisation.</p></article>
+    <article class="foundation-item"><h3>Write integrity</h3><p>Removing power during a write can corrupt the file system. Close files, flush important data, and design a safe shutdown process.</p></article></div>
+          </section>
+
+          <section class="content-section" id="wiring">
+            <p class="eyebrow">02 · Connections</p>
+            <h2>Wire it to the ESP32-S3.</h2>
+            
+    <div class="diagram-frame" role="img" aria-label="Connection diagram between ESP32-S3 and SD Data Display hardware">
+      <svg viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg">
+        <rect x="25" y="30" width="220" height="300" rx="22" fill="#081a35"/>
+        <text x="135" y="60" text-anchor="middle" fill="#c9f45a" font-size="18" font-weight="800">ESP32-S3</text>
+        <rect x="675" y="30" width="220" height="300" rx="22" fill="#eaf0ff" stroke="#175fe9" stroke-width="2"/>
+        <text x="785" y="60" text-anchor="middle" fill="#081a35" font-size="16" font-weight="800">SD MODULE</text>
+        
+      <g>
+        <line x1="245" y1="88" x2="675" y2="88" stroke="#175fe9" stroke-width="4" />
+        <circle cx="245" cy="88" r="6" fill="#175fe9" />
+        <circle cx="675" cy="88" r="6" fill="#175fe9" />
+        <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
+        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3V3 / rated supply → VCC</text>
+        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Verify module</text>
+      </g>
+      <g>
+        <line x1="245" y1="128" x2="675" y2="128" stroke="#13b8c4" stroke-width="4" />
+        <circle cx="245" cy="128" r="6" fill="#13b8c4" />
+        <circle cx="675" cy="128" r="6" fill="#13b8c4" />
+        <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GND → GND</text>
+        <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Common ground</text>
+      </g>
+      <g>
+        <line x1="245" y1="168" x2="675" y2="168" stroke="#ff7a45" stroke-width="4" />
+        <circle cx="245" cy="168" r="6" fill="#ff7a45" />
+        <circle cx="675" cy="168" r="6" fill="#ff7a45" />
+        <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
+        <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 4 → SCK</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">VSPI clock</text>
+      </g>
+      <g>
+        <line x1="245" y1="208" x2="675" y2="208" stroke="#7a5af8" stroke-width="4" />
+        <circle cx="245" cy="208" r="6" fill="#7a5af8" />
+        <circle cx="675" cy="208" r="6" fill="#7a5af8" />
+        <rect x="318" y="194" width="284" height="28" rx="8" fill="#ffffff" stroke="#7a5af8" />
+        <text x="460" y="213" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 6 → MOSI</text>
+        <text x="460" y="233" text-anchor="middle" fill="#516078" font-size="11">ESP32 → card</text>
+      </g>
+      <g>
+        <line x1="245" y1="248" x2="675" y2="248" stroke="#299c5f" stroke-width="4" />
+        <circle cx="245" cy="248" r="6" fill="#299c5f" />
+        <circle cx="675" cy="248" r="6" fill="#299c5f" />
+        <rect x="318" y="234" width="284" height="28" rx="8" fill="#ffffff" stroke="#299c5f" />
+        <text x="460" y="253" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 5 → MISO</text>
+        <text x="460" y="273" text-anchor="middle" fill="#516078" font-size="11">Card → ESP32</text>
+      </g>
+      <g>
+        <line x1="245" y1="288" x2="675" y2="288" stroke="#d8446f" stroke-width="4" />
+        <circle cx="245" cy="288" r="6" fill="#d8446f" />
+        <circle cx="675" cy="288" r="6" fill="#d8446f" />
+        <rect x="318" y="274" width="284" height="28" rx="8" fill="#ffffff" stroke="#d8446f" />
+        <text x="460" y="293" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 7 → CS</text>
+        <text x="460" y="313" text-anchor="middle" fill="#516078" font-size="11">Card select</text>
+      </g>
+      </svg>
+    </div>
+            <div class="notice"><strong>Before applying power</strong><p>This example places the SD card on a separate SPI peripheral from the TFT. Keep logic at 3.3 V and use an SD module designed for the supply voltage you provide.</p></div>
+          </section>
+
+          <section class="content-section" id="code">
+            <p class="eyebrow">03 · Code focus</p>
+            <h2>Study the important pattern.</h2>
+            <pre class="code project-code"><code>#include &lt;SPI.h&gt;
+#include &lt;SD.h&gt;
+
+SPIClass sdBus(VSPI);
+constexpr uint8_t SD_CS = 7;
+
+sdBus.begin(4, 5, 6);       // SCK, MISO, MOSI
+if (!SD.begin(SD_CS, sdBus, 16000000)) {
+  Serial.println(&quot;SD initialisation failed&quot;);
+}
+</code></pre>
+            <p class="code-note">This is an instructional extract, not the complete project. Error handling, library setup, and supporting functions may be omitted deliberately.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">04 · Project outcome</p>
+            <h2>What a successful build demonstrates.</h2>
+            <ul class="outcome-list"><li>Initialise a card on an explicitly assigned SPI bus</li><li>List files and report their sizes</li><li>Read a text or image file in bounded chunks</li><li>Explain when separate SPI buses simplify integration</li></ul>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">05 · Diagnose</p>
+            <h2>Use symptoms as evidence.</h2>
+            <div class="table-wrap"><table class="spec-table troubleshooting-table"><thead><tr><th>Symptom</th><th>First checks</th></tr></thead><tbody>
+    <tr><th scope="row">Card mount failed</th><td>Check formatting, CS pin, supply voltage, wiring order, and start at a lower SPI frequency.</td></tr>
+    <tr><th scope="row">Works alone but not with TFT</th><td>Set every CS pin HIGH before initialisation or use separate SPI peripherals.</td></tr>
+    <tr><th scope="row">Files become corrupted</th><td>Close files, avoid power loss during writes, and test the card on a computer.</td></tr></tbody></table></div>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">06 · Extend</p>
+            <h2>Move beyond the first demonstration.</h2>
+            <ul class="extension-grid"><li>CSV sensor logger</li><li>Image slideshow</li><li>Configuration file loader</li><li>Ring-buffered event logging with timestamps</li></ul>
+          </section>
+        </article>
+
+        <aside class="project-sidebar">
+          <div class="card">
+            <p class="eyebrow">Equipment</p>
+            <h3>What you need</h3>
+            <ul class="compact-list"><li>ESP32-S3 development board</li><li>microSD breakout or display with SD slot</li><li>FAT32-formatted microSD card</li><li>Jumper wires</li><li>Optional TFT display</li><li>SD and SPI libraries</li></ul>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Full reference</p>
+            <h3>Continue with the source material</h3>
+            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
+            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/07_SDCard_Display">Open complete resources →</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <nav class="wrap project-nav" aria-label="Other project examples">
+      <a href="touch-screen-controller.html"><span>Previous project</span><strong>← Touch-Screen Controller</strong></a>
+      <a href="../projects.html"><span>All projects</span><strong>Project library</strong></a>
+      <a href="protocol-test-bench.html"><span>Next project</span><strong>Protocol Test Bench →</strong></a>
+    </nav>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab</span></a><div class="footer-links"><a href="../about.html">About</a><a href="../curriculum.html">Lesson plans</a><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a></div></div><p class="copyright">© <span data-year></span> Kian Keong Ooi. Verify every pin assignment against your exact board and module.</p></div></footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

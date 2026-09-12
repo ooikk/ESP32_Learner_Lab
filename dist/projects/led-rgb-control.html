@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Control the ESP32-S3’s built-in addressable RGB LED while learning how software values become colour and light.">
+  <title>LED &amp; RGB Control | ESP32 Learning Lab</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab<small>Electronics · C · IoT</small></span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <div class="nav-links" id="main-nav"><a href="../index.html">Home</a><a href="../technology.html">ESP32</a><a href="../projects.html" aria-current="page">Projects</a><a href="../curriculum.html">Lesson plans</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="project-detail-hero">
+      <div class="wrap project-hero-grid">
+        <div>
+          <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../projects.html">Projects</a><span>/</span><span>LED &amp; RGB Control</span></div>
+          <div class="tags"><span class="tag">Beginner</span><span class="tag">60–90 minutes</span></div>
+          <h1>LED &amp; RGB Control</h1>
+          <p class="lead">Control the ESP32-S3’s built-in addressable RGB LED while learning how software values become colour and light.</p>
+          <div class="hero-actions"><a class="button" href="#wiring">See ESP32-S3 connections</a><a class="button secondary" href="#code">Study the code extract</a></div>
+        </div>
+        <figure class="project-figure">
+          <img src="https://github.com/user-attachments/assets/ec73d7da-acef-4d03-a89f-68f72a6ce86f" alt="ESP32-S3 development board used for the built-in RGB LED exercise" loading="eager" referrerpolicy="no-referrer">
+          <figcaption>Reference hardware or diagram from the course’s Arduino documentation.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap project-facts">
+        <div><small>Level</small><strong>Beginner</strong></div>
+        <div><small>Suggested time</small><strong>60–90 minutes</strong></div>
+        <div><small>Focus</small><strong>First project</strong></div>
+        <div><small>Deliverable</small><strong>Working demonstration</strong></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap project-layout">
+        <article>
+          <section class="content-section">
+            <p class="eyebrow">01 · Engineering foundation</p>
+            <h2>Know what the circuit is doing.</h2>
+            <div class="foundation-grid">
+    <article class="foundation-item"><h3>Digital information, analogue-looking output</h3><p>The LED receives a precisely timed digital data stream. Each pixel stores separate red, green, and blue intensity values, which our eyes blend into one colour.</p></article>
+    <article class="foundation-item"><h3>GPIO assignment</h3><p>Many ESP32-S3 DevKitC boards connect the built-in RGB LED to GPIO 48, but clones may use another pin. Confirm the board schematic before assuming the pin.</p></article>
+    <article class="foundation-item"><h3>Current and brightness</h3><p>Full white drives all three colour channels and uses more current than a dim single colour. Start at modest brightness to reduce heat and glare.</p></article></div>
+          </section>
+
+          <section class="content-section" id="wiring">
+            <p class="eyebrow">02 · Connections</p>
+            <h2>Wire it to the ESP32-S3.</h2>
+            
+    <div class="diagram-frame" role="img" aria-label="Connection diagram between ESP32-S3 and LED &amp; RGB Control hardware">
+      <svg viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
+        <rect x="25" y="30" width="220" height="270" rx="22" fill="#081a35"/>
+        <text x="135" y="60" text-anchor="middle" fill="#c9f45a" font-size="18" font-weight="800">ESP32-S3</text>
+        <rect x="675" y="30" width="220" height="270" rx="22" fill="#eaf0ff" stroke="#175fe9" stroke-width="2"/>
+        <text x="785" y="60" text-anchor="middle" fill="#081a35" font-size="16" font-weight="800">LED MODULE</text>
+        
+      <g>
+        <line x1="245" y1="88" x2="675" y2="88" stroke="#175fe9" stroke-width="4" />
+        <circle cx="245" cy="88" r="6" fill="#175fe9" />
+        <circle cx="675" cy="88" r="6" fill="#175fe9" />
+        <rect x="318" y="74" width="284" height="28" rx="8" fill="#ffffff" stroke="#175fe9" />
+        <text x="460" y="93" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">GPIO 48 → DIN</text>
+        <text x="460" y="113" text-anchor="middle" fill="#516078" font-size="11">Internal data</text>
+      </g>
+      <g>
+        <line x1="245" y1="128" x2="675" y2="128" stroke="#13b8c4" stroke-width="4" />
+        <circle cx="245" cy="128" r="6" fill="#13b8c4" />
+        <circle cx="675" cy="128" r="6" fill="#13b8c4" />
+        <rect x="318" y="114" width="284" height="28" rx="8" fill="#ffffff" stroke="#13b8c4" />
+        <text x="460" y="133" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">3.3 V rail → VDD</text>
+        <text x="460" y="153" text-anchor="middle" fill="#516078" font-size="11">Internal power</text>
+      </g>
+      <g>
+        <line x1="245" y1="168" x2="675" y2="168" stroke="#ff7a45" stroke-width="4" />
+        <circle cx="245" cy="168" r="6" fill="#ff7a45" />
+        <circle cx="675" cy="168" r="6" fill="#ff7a45" />
+        <rect x="318" y="154" width="284" height="28" rx="8" fill="#ffffff" stroke="#ff7a45" />
+        <text x="460" y="173" text-anchor="middle" fill="#0b1830" font-size="13" font-weight="700">Ground → GND</text>
+        <text x="460" y="193" text-anchor="middle" fill="#516078" font-size="11">Internal return</text>
+      </g>
+      </svg>
+    </div>
+            <div class="notice"><strong>Before applying power</strong><p>No external wiring is required when your board includes the addressable RGB LED. If it does not, add a separate WS2812B module with a common ground and follow that module’s power requirements.</p></div>
+          </section>
+
+          <section class="content-section" id="code">
+            <p class="eyebrow">03 · Code focus</p>
+            <h2>Study the important pattern.</h2>
+            <pre class="code project-code"><code>#include &lt;Adafruit_NeoPixel.h&gt;
+
+constexpr uint8_t LED_PIN = 48;
+Adafruit_NeoPixel pixel(1, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+void showColour(uint8_t r, uint8_t g, uint8_t b) {
+  pixel.setPixelColor(0, pixel.Color(r, g, b));
+  pixel.show();
+}</code></pre>
+            <p class="code-note">This is an instructional extract, not the complete project. Error handling, library setup, and supporting functions may be omitted deliberately.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">04 · Project outcome</p>
+            <h2>What a successful build demonstrates.</h2>
+            <ul class="outcome-list"><li>Upload a sketch and illuminate the built-in LED</li><li>Create at least three colours by changing RGB values</li><li>Explain why full white uses more current</li><li>Move repeated LED commands into a reusable function</li></ul>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">05 · Diagnose</p>
+            <h2>Use symptoms as evidence.</h2>
+            <div class="table-wrap"><table class="spec-table troubleshooting-table"><thead><tr><th>Symptom</th><th>First checks</th></tr></thead><tbody>
+    <tr><th scope="row">LED remains dark</th><td>Verify the board really has a WS2812B LED and confirm its GPIO. Try GPIO 48 only when it matches your hardware.</td></tr>
+    <tr><th scope="row">Wrong colour appears</th><td>The module may use GRB rather than RGB byte order. Select the correct order in the pixel constructor.</td></tr>
+    <tr><th scope="row">Upload succeeds but nothing changes</th><td>Call pixel.begin() in setup() and pixel.show() after changing the buffer.</td></tr></tbody></table></div>
+          </section>
+
+          <section class="content-section">
+            <p class="eyebrow">06 · Extend</p>
+            <h2>Move beyond the first demonstration.</h2>
+            <ul class="extension-grid"><li>Fade colours without delay()</li><li>Display a system status using colour conventions</li><li>Add a push button to select a colour</li><li>Measure current at different brightness settings</li></ul>
+          </section>
+        </article>
+
+        <aside class="project-sidebar">
+          <div class="card">
+            <p class="eyebrow">Equipment</p>
+            <h3>What you need</h3>
+            <ul class="compact-list"><li>ESP32-S3 development board with built-in WS2812B LED</li><li>Data-capable USB cable</li><li>Arduino IDE with ESP32 board support</li><li>Adafruit NeoPixel or compatible library</li></ul>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Full reference</p>
+            <h3>Continue with the source material</h3>
+            <p>The repository contains fuller notes, sketches, library details, and additional experiments.</p>
+            <a class="link-arrow" href="https://github.com/ooikk/Arduino-Documentation/tree/main/01_LED">Open complete resources →</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <nav class="wrap project-nav" aria-label="Other project examples">
+      <a href="protocol-test-bench.html"><span>Previous project</span><strong>← Protocol Test Bench</strong></a>
+      <a href="../projects.html"><span>All projects</span><strong>Project library</strong></a>
+      <a href="digital-input-control.html"><span>Next project</span><strong>Inputs &amp; Responsive Control →</strong></a>
+    </nav>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">32</span><span>ESP32 Learning Lab</span></a><div class="footer-links"><a href="../about.html">About</a><a href="../curriculum.html">Lesson plans</a><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a></div></div><p class="copyright">© <span data-year></span> Kian Keong Ooi. Verify every pin assignment against your exact board and module.</p></div></footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
