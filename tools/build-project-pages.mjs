@@ -560,12 +560,6 @@ function page(project, index) {
             <h3>What you need</h3>
             ${list(project.parts, "compact-list")}
           </div>
-          <div class="card">
-            <p class="eyebrow">Private course material</p>
-            <h3>Complete code is provided during the lesson</h3>
-            <p>Students receive the full sketch, library setup notes, and supporting files directly as part of the guided course.</p>
-            <a class="link-arrow" href="../contact.html">Ask about this project →</a>
-          </div>
         </aside>
       </div>
     </section>

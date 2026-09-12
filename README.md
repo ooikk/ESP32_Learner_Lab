@@ -38,7 +38,7 @@ Each project page includes:
 - partial instructional code
 - expected outcomes
 - troubleshooting and extension ideas
-- note that complete code and supporting files are provided privately during lessons
+- note that supporting teaching materials are shared privately during lessons
 
 Update the public email address in `dist/contact.html`. Course dates and fees are intentionally shown as “By arrangement” until public details are confirmed.
 
@@ -61,7 +61,7 @@ Open `dist/index.html` directly in a browser, or serve the `dist/` folder with a
 
 ## Content sources
 
-- Course examples and complete code: private teaching materials
+- Course examples and teaching notes: private materials
 - Official Arduino ESP32 guide: https://docs.espressif.com/projects/arduino-esp32/en/latest/getting_started.html
 - Official ESP32-S3 overview: https://www.espressif.com/en/products/socs/esp32-s3
 
